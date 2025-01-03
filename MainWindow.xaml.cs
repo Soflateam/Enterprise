@@ -83,5 +83,6 @@ namespace Enterprise
         {
             ContentFrame.Source = new Uri("Dashboard.xaml", UriKind.Relative);
         }
+
     }
 }

@@ -28,9 +28,11 @@ namespace Enterprise
             DataContext = (App)Application.Current;
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        public void AddButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.ContentFrame.Source = new Uri("EmployeeEdit.xaml", UriKind.Relative);
         }
+
     }
 }
