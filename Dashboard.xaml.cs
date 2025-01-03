@@ -16,13 +16,12 @@ using System.Windows.Shapes;
 namespace Enterprise
 {
     /// <summary>
-    /// Interaction logic for SoftwarePage.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class SoftwarePage : Page
+    public partial class EmployeeAdd : Page
     {
-        public SoftwarePage()
+        public EmployeeAdd()
         {
-            InitializeComponent();
         }
     }
 }

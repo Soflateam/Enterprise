@@ -21,5 +21,8 @@ namespace Enterprise
                 _mainWindow.Show();
             }
         }
+
+
+
     }
 }

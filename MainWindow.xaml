@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enterprise"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="MainWindow" Height="600" Width="900" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent">
 
     <Window.Resources>
@@ -12,8 +12,9 @@
     </Window.Resources>
 
 
+
     <!--Left Side Menu Grid-->
-    <Border Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -27,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!--Left Side Color and Menus-->
-            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,25"
+            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,7"
                     HorizontalAlignment="Left">
                 <DockPanel>
                     <Border Width="75" Height="75" Padding="3" Background="White" CornerRadius="50"
@@ -45,14 +46,16 @@
                     <Separator Margin="25,12,25,10" DockPanel.Dock="Top" Height="1" Background="White" Foreground="White"/>
 
                     <StackPanel DockPanel.Dock="Top">
-                        <Button Style="{StaticResource LeftMenuButtons}">
+                        <Button Style="{StaticResource LeftMenuButtons}" x:Name="DashboardViewButton"
+                                Click="DashboardViewButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="HomeVariant" Margin="15,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Dashboard" Margin="5,0,0,0" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource LeftMenuButtons}">
+                        <Button Style="{StaticResource LeftMenuButtons}" x:Name="EmployeesViewButton"
+                                    Click="EmployeesViewButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="MonitorAccount" Margin="15,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Employees" Margin="5,0,0,0" TextAlignment="Center"/>
@@ -66,7 +69,8 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource LeftMenuButtons}">
+                        <Button Style="{StaticResource LeftMenuButtons}" x:Name="SoftwareViewButton"
+                                Click="SoftwareViewButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="AccessPoint" Margin="15,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Software" Margin="5,0,0,0" TextAlignment="Center"/>
@@ -88,8 +92,9 @@
                 </DockPanel>
             </Border>
 
-            <!--Main Section-->
+                <!--Main Section-->
             <Grid Grid.Column="1" Margin="0,0,0,0" Grid.Row="0">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -103,118 +108,31 @@
                 <!--Search Box-->
                 <Grid Width="300" HorizontalAlignment="Center" Height="50" Margin="-115,0,0,0">
                     <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                          Panel.ZIndex="1" Text="Search Here ..."  Visibility="{Binding ElementName=SearchText,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                              Panel.ZIndex="1" Text="Search Here ..."  Visibility="{Binding ElementName=SearchText,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
 
 
                     <TextBox x:Name="SearchText" Style="{StaticResource SearchTextBox}"/>
 
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                        Foreground="#b0b9c6" Margin="0,0,15,0" HorizontalAlignment="Right"/>
+                                            Foreground="#b0b9c6" Margin="0,0,15,0" HorizontalAlignment="Right"/>
                 </Grid>
 
                 <!--Top Right Buttons-->
-                <Button Style="{StaticResource CloseButton}" Margin="0,1,15,0" HorizontalAlignment="Right">
+                <Button Style="{StaticResource CloseButton}" Margin="0,1,15,0" HorizontalAlignment="Right"
+                            Click="CloseButton_Click">
                     <Icon:PackIconMaterial Kind="CloseThick"/>
                 </Button>
 
-                <Button Style="{StaticResource TopButton}" Margin="0,5,50,0" HorizontalAlignment="Right">
+                <Button Style="{StaticResource TopButton}" Margin="0,5,50,0" HorizontalAlignment="Right"
+                            Click="MinimizeButton_Click">
                     <Icon:PackIconMaterial Kind="WindowMinimize"/>
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="1">
-                <!--Page Title-->
-                <TextBlock Text="Employees" Grid.Row="1" FontSize="26" FontWeight="SemiBold" 
-                            FontFamily="Book Antiqua" Margin="10,37,0,0" Foreground="#121518" HorizontalAlignment="Left"
-                            VerticalAlignment="Top"/>
-
-                <Grid Grid.Column="1" Grid.Row="2">
-
-                    <!--Add Button-->
-                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0">
-                        <StackPanel Orientation="Horizontal">
-                            <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11"
-                           Margin="0,1,0,0"/>
-                            <TextBlock Text="Add New" Margin="3,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-                </Grid>
-
-                <!--Visual Seperator-->
-                <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,75,0,0" VerticalAlignment="Top"/>
-
-                <!--Small Tab Buttons-->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,70,0,0" VerticalAlignment="Top">
-                    <Button Content="All" Style="{StaticResource TabButton}" Margin="5,2,-15,0"/>
-                    <Button Content="Permanent" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
-                    <Button Content="Temporary" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
-                </StackPanel>
-
-                <TextBlock Text="All" Grid.Row="4" FontSize="16" FontWeight="SemiBold"
-                                   Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top"
-                                   Margin="10,115,0,0"/>
-
-                <TextBlock Text="Filter by:" Grid.Row="4" FontSize="12" FontWeight="SemiBold"
-                                   Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                   Margin="0,117,180,0"/>
-
-                <!--Filter Box-->
-                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-300,25,0">
-                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                          Panel.ZIndex="1" Text="Search in Employees ..."  Visibility="{Binding ElementName=SearchText,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-
-
-                    <TextBox x:Name="FilterText" Style="{StaticResource SearchFilterBox}"/>
-                </Grid>
-            </Grid>
-            
             <Grid Grid.Column="1" Grid.Row="5">
 
-                <!--Employees DataGrid-->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Margin="15,125,10,0" x:Name="EmployeesDataGrid">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
-                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding EmployeeName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
-                        <DataGridTextColumn Header="Phone Number" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
-                        <DataGridTextColumn Header="Email Address" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
-
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="125">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource GridViewButton}">
-                                            <Icon:PackIconMaterial Kind="MagnifyPlus" Margin="0,0,3,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button Style="{StaticResource GridEditButton}">
-                                            <Icon:PackIconMaterial Kind="AccountEdit" Margin="0,0,3,0"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button Style="{StaticResource GridRemoveButton}">
-                                            <Icon:PackIconMaterial Kind="TrashCan" Margin="0,0,4,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Frame x:Name="ContentFrame" Source="Dashboard.xaml" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       />
             </Grid>
         </Grid>
     </Border>
