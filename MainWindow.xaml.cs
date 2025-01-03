@@ -18,55 +18,24 @@ namespace Enterprise
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private string _userName;
-
-        public string UserName
-        {
-            get => _userName;
-            set
-            {
-                _userName = value;
-                OnPropertyChanged();
-            }
-        }
-
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
-
-            UserName = Environment.UserName;
-
-            ObservableCollection<EmployeeData> employeeDatas = new ObservableCollection<EmployeeData>();
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Bill Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "3607181107", EmployeeEmail = "Bill@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Alexander Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "9542634342", EmployeeEmail = "Alexander@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Stellan Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "7572535555", EmployeeEmail = "Stellan@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Bill Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "3607181107", EmployeeEmail = "Bill@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Alexander Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "9542634342", EmployeeEmail = "Alexander@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Stellan Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "7572535555", EmployeeEmail = "Stellan@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Bill Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "3607181107", EmployeeEmail = "Bill@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Alexander Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "9542634342", EmployeeEmail = "Alexander@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Stellan Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "7572535555", EmployeeEmail = "Stellan@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Bill Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "3607181107", EmployeeEmail = "Bill@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Alexander Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "9542634342", EmployeeEmail = "Alexander@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Stellan Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "7572535555", EmployeeEmail = "Stellan@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Bill Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "3607181107", EmployeeEmail = "Bill@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Alexander Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "9542634342", EmployeeEmail = "Alexander@Skarsgard.com" });
-            employeeDatas.Add(new EmployeeData { EmployeeName = "Stellan Skarsgard", EmployeeTitle = "Actor", EmployeePhone = "7572535555", EmployeeEmail = "Stellan@Skarsgard.com" });
-
-            EmployeesDataGrid.ItemsSource = employeeDatas;
+            
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public class EmployeeData
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            public string EmployeeName { get; set; }
+            public string EmployeeTitle { get; set; }
+            public string EmployeePhone { get; set; }
+            public string EmployeeEmail { get; set; }
+
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        public void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
@@ -76,7 +45,7 @@ namespace Enterprise
 
         private bool IsMaximized = false;
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
             {
@@ -96,15 +65,31 @@ namespace Enterprise
                 }
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+                this.Close();
+        }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void SoftwareViewButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EmployeesViewButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
+        }
+
+        private void DashboardViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Source = new Uri("Dashboard.xaml", UriKind.Relative);
+        }
     }
-
-    public class EmployeeData
-    {
-        public string EmployeeName { get; set; }
-        public string EmployeeTitle { get; set; }
-        public string EmployeePhone { get; set; }
-        public string EmployeeEmail { get; set; }
-
-    }
-
 }
