@@ -13,7 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Enterprise.App;
 using static Enterprise.MainWindow;
+using static Enterprise.EmployeeEdit;
+using System.Globalization;
 
 namespace Enterprise
 {
@@ -22,16 +25,70 @@ namespace Enterprise
     /// </summary>
     public partial class EmployeeView : Page
     {
-
         public EmployeeView()
         {
             DataContext = (App)Application.Current;
         }
 
+
         public void AddButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ContentFrame.Source = new Uri("EmployeeEdit.xaml", UriKind.Relative);
+
+            // Once navigation is complete, set a blank DataContext for adding a new employee
+            mainWindow.ContentFrame.NavigationService.LoadCompleted += (s, args) =>
+            {
+                if (mainWindow.ContentFrame.Content is EmployeeEdit employeeEdit)
+                {
+                    employeeEdit.DataContext = new EmployeeData(); // Set empty DataContext for new entry
+                }
+            };
+        }
+
+        public void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the selected employee from the DataGrid
+            EmployeeData selectedEmployee = (EmployeeData)EmployeesDataGrid.SelectedItem;
+
+            if (selectedEmployee != null)
+            {
+                // Navigate to the EmployeeEdit page
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ContentFrame.Source = new Uri("EmployeeEdit.xaml", UriKind.Relative);
+
+                // Once navigation is complete, set the DataContext of EmployeeEdit
+                mainWindow.ContentFrame.NavigationService.LoadCompleted += (s, args) =>
+                {
+                    if (mainWindow.ContentFrame.Content is EmployeeEdit employeeEdit)
+                    {
+                        employeeEdit.DataContext = selectedEmployee;
+                    }
+                };
+            }
+            else
+            {
+                MessageBox.Show("Please select an employee to edit.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        public void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the selected employee from the ListBox
+            EmployeeData selectedEmployee = (EmployeeData)EmployeesDataGrid.SelectedItem;
+
+            if (selectedEmployee != null)
+            {
+                // Remove the employee from the Employees collection
+                ((App)Application.Current).Employees.Remove(selectedEmployee);
+
+                // Save the updated data to the file
+                ((App)Application.Current).SaveDataToFileEmployees();
+            }
+            else
+            {
+                MessageBox.Show("Please select an employee to remove.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
     }

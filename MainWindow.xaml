@@ -105,18 +105,6 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <!--Search Box-->
-                <Grid Width="300" HorizontalAlignment="Center" Height="50" Margin="-115,0,0,0">
-                    <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                              Panel.ZIndex="1" Text="Search Here ..."  Visibility="{Binding ElementName=SearchText,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-
-
-                    <TextBox x:Name="SearchText" Style="{StaticResource SearchTextBox}"/>
-
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
-                                            Foreground="#b0b9c6" Margin="0,0,15,0" HorizontalAlignment="Right"/>
-                </Grid>
-
                 <!--Top Right Buttons-->
                 <Button Style="{StaticResource CloseButton}" Margin="0,1,15,0" HorizontalAlignment="Right"
                             Click="CloseButton_Click">

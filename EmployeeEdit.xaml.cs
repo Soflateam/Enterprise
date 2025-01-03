@@ -31,21 +31,42 @@ namespace Enterprise
 
         public void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create a new employee object from the values entered in the text boxes
-            EmployeeData newEmployee = new EmployeeData
+            // Check if DataContext is bound to an EmployeeData object
+            if (DataContext is EmployeeData employee)
             {
-                EmployeeName = FullNameTextBox.Text,
-                EmployeeTitle = TitleTextBox.Text,
-                EmployeePhone = PhoneTextBox.Text,
-                EmployeeEmail = EmailTextBox.Text
-            };
+                // Check if the employee is already in the collection
+                ObservableCollection<EmployeeData> employees = ((App)Application.Current).Employees;
+                var existingEmployee = employees.FirstOrDefault(e => e == employee);
 
-            // Add the new employee to the Employees collection
-            ((App)Application.Current).Employees.Add(newEmployee);
+                if (existingEmployee != null)
+                {
+                    // Update the existing employee
+                    existingEmployee.EmployeeName = FullNameTextBox.Text;
+                    existingEmployee.EmployeeTitle = TitleTextBox.Text;
+                    existingEmployee.EmployeePhone = PhoneTextBox.Text;
+                    existingEmployee.EmployeeEmail = EmailTextBox.Text;
+                }
+                else
+                {
+                    // If not found, add as a new employee
+                    employee.EmployeeName = FullNameTextBox.Text;
+                    employee.EmployeeTitle = TitleTextBox.Text;
+                    employee.EmployeePhone = PhoneTextBox.Text;
+                    employee.EmployeeEmail = EmailTextBox.Text;
+                    employees.Add(employee);
+                }
+            }
 
             // Save the data to the file
             ((App)Application.Current).SaveDataToFileEmployees();
 
+            // Navigate back to the EmployeeView page
+            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
+        }
+
+        public void DiscardButton_Click(object sender, RoutedEventArgs e)
+        {
             // Navigate back to the EmployeeView page
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);

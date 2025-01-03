@@ -24,12 +24,10 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Column="1" Grid.Row="1">
                 <!--Page Title-->
-                <TextBlock Text="Employees" Grid.Row="1" FontSize="26" FontWeight="SemiBold" 
-                            FontFamily="Book Antiqua" Margin="10,37,0,0" Foreground="#121518" HorizontalAlignment="Left"
-                            VerticalAlignment="Top"/>
+                <TextBlock Text="Employees" Grid.Row="1" FontSize="32"  Style="{StaticResource TitleText}"/>
 
                 <Grid Grid.Column="1" Grid.Row="2">
 
@@ -45,38 +43,34 @@
                 </Grid>
 
                 <!--Visual Seperator-->
-                <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,75,0,0" VerticalAlignment="Top"/>
+                <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,117,0,0" VerticalAlignment="Top"/>
 
                 <!--Small Tab Buttons-->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,70,0,0" VerticalAlignment="Top">
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,117,0,0" VerticalAlignment="Top">
                     <Button Content="All" Style="{StaticResource TabButton}" Margin="5,2,-10,0"/>
                     <Button Content="Permanent" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                     <Button Content="Temporary" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                 </StackPanel>
 
-                <TextBlock Text="All" Grid.Row="4" FontSize="16" FontWeight="SemiBold"
-                                   Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top"
-                                   Margin="10,115,0,0"/>
-
                 <TextBlock Text="Filter by:" Grid.Row="4" FontSize="12" FontWeight="SemiBold"
                                    Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                   Margin="0,117,180,0"/>
+                                   Margin="0,129,180,0"/>
 
                 <!--Filter Box-->
-                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-349,25,0">
-                    <TextBlock Margin="15,0,0,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-                          Panel.ZIndex="1" Text="Search in Employees ..."  Visibility="{Binding ElementName=SearchText,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
-
-
+                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-325,25,0">
                     <TextBox x:Name="FilterText" Style="{StaticResource SearchFilterBox}"/>
                 </Grid>
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="249*"/>
+                    <ColumnDefinition Width="151*"/>
+                </Grid.ColumnDefinitions>
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding Employees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Margin="15,125,10,0" x:Name="EmployeesDataGrid">
+                          Margin="15,170,10,45" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
@@ -95,13 +89,10 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource GridViewButton}">
-                                            <Icon:PackIconMaterial Kind="MagnifyPlus" Margin="0,0,3,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button Style="{StaticResource GridEditButton}">
+                                        <Button Style="{StaticResource GridEditButton}" Click="EditButton_Click">
                                             <Icon:PackIconMaterial Kind="AccountEdit" Margin="0,0,3,0"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Button>
-                                        <Button Style="{StaticResource GridRemoveButton}">
+                                        <Button Style="{StaticResource GridRemoveButton}" Click="RemoveButton_Click">
                                             <Icon:PackIconMaterial Kind="TrashCan" Margin="0,0,4,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Button>
                                     </StackPanel>

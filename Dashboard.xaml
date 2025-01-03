@@ -11,12 +11,7 @@
 
         <Grid Grid.Column="1" Grid.Row="1">
             <!--Page Title-->
-            <TextBlock Text="Dashboard" Grid.Row="1" FontSize="26" FontWeight="SemiBold" 
-                                FontFamily="Book Antiqua" Margin="10,37,0,0" Foreground="#121518" HorizontalAlignment="Left"
-                                VerticalAlignment="Top"/>
-
-            <!--Visual Seperator-->
-            <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,75,0,0" VerticalAlignment="Top"/>
+            <TextBlock Text="Dashboard" Grid.Row="1"  Style="{StaticResource TitleText}"/>
 
         </Grid>
     </Grid>
