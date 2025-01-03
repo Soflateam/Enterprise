@@ -24,4 +24,10 @@
     <Folder Include="Assets\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="EmployeeEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>

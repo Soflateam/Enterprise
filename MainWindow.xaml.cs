@@ -23,17 +23,9 @@ namespace Enterprise
         public MainWindow()
         {
             InitializeComponent();
-            
+            DataContext = (App)Application.Current;
         }
 
-        public class EmployeeData
-        {
-            public string EmployeeName { get; set; }
-            public string EmployeeTitle { get; set; }
-            public string EmployeePhone { get; set; }
-            public string EmployeeEmail { get; set; }
-
-        }
 
         public void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

@@ -1,11 +1,11 @@
-﻿<Page x:Class="Enterprise.EmployeeView"
+﻿<Page x:Class="Enterprise.EmployeeEdit"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
       xmlns:local="clr-namespace:Enterprise"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       Height="600" Width="800" 
-      Title="EmployeeView">
+      Title="EmployeeEdit">
 
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
@@ -34,8 +34,7 @@
                 <Grid Grid.Column="1" Grid.Row="2">
 
                     <!--Add Button-->
-                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0"
-                            Click="AddButton_Click">
+                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11"
                            Margin="0,1,0,0"/>
@@ -54,7 +53,7 @@
                     <Button Content="Temporary" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                 </StackPanel>
 
-                <TextBlock Text="All" Grid.Row="4" FontSize="16" FontWeight="SemiBold"
+                <TextBlock Text="Editing Employee" Grid.Row="4" FontSize="16" FontWeight="SemiBold"
                                    Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Top"
                                    Margin="10,115,0,0"/>
 
@@ -72,46 +71,11 @@
                 </Grid>
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="5">
+            <Border Grid.Column="1" Grid.Row="5" Background="#26331d" 
+                    CornerRadius="8" Margin="15,160,15,15">
 
-                <!--Employees DataGrid-->
-                <DataGrid ItemsSource="{Binding Employees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Margin="15,125,10,0" x:Name="EmployeesDataGrid">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
-
-                        <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeName}"/>
-                        <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
-                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
-                        <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
-
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="125">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource GridViewButton}">
-                                            <Icon:PackIconMaterial Kind="MagnifyPlus" Margin="0,0,3,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button Style="{StaticResource GridEditButton}">
-                                            <Icon:PackIconMaterial Kind="AccountEdit" Margin="0,0,3,0"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                        <Button Style="{StaticResource GridRemoveButton}">
-                                            <Icon:PackIconMaterial Kind="TrashCan" Margin="0,0,4,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+                <TextBlock Text="Test" Foreground="White"/>
+            </Border>
         </Grid>
     </Border>
 </Page>

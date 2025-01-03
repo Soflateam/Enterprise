@@ -20,17 +20,12 @@ namespace Enterprise
     /// <summary>
     /// Interaction logic for EmployeeView.xaml
     /// </summary>
-    public partial class EmployeeView : Page
+    public partial class EmployeeEdit : Page
     {
 
-        public EmployeeView()
+        public EmployeeEdit()
         {
             DataContext = (App)Application.Current;
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
