@@ -481,7 +481,7 @@
             <Setter Property="CanUserReorderColumns" Value="False"/>
             <Setter Property="CanUserDeleteRows" Value="False"/>
             <Setter Property="CanUserResizeRows" Value="False"/>
-            <Setter Property="Height" Value="385"/>
+            <Setter Property="Height" Value="370"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type DataGrid}">

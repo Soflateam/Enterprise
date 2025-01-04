@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
       xmlns:local="clr-namespace:Enterprise"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      Height="600" Width="800" 
+      Height="550" Width="800" 
       Title="EmployeeView">
 
     <Page.Resources>
@@ -57,7 +57,7 @@
                                    Margin="0,129,180,0"/>
 
                 <!--Filter Box-->
-                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-325,25,0">
+                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-275,25,0">
                     <TextBox x:Name="FilterText" Style="{StaticResource SearchFilterBox}"/>
                 </Grid>
             </Grid>
@@ -70,7 +70,7 @@
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding Employees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Margin="15,170,10,45" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          Margin="15,170,10,10" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
