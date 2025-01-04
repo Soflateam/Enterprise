@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enterprise"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="MainWindow" Height="600" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="MainWindow" Height="625" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent">
 
     <Window.Resources>

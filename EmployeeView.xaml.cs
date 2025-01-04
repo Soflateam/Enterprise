@@ -26,11 +26,6 @@ namespace Enterprise
     /// </summary>
     public partial class EmployeeView : Page, INotifyPropertyChanged
     {
-        private string _searchText;
-        private ICollectionView _filteredEmployees;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public EmployeeView()
         {
             InitializeComponent();
@@ -43,6 +38,10 @@ namespace Enterprise
 
             DataContext = this;
         }
+
+        // Search and Filter Logic
+        private string _searchText;
+        private ICollectionView _filteredEmployees;
 
         public ICollectionView FilteredEmployees
         {
@@ -67,6 +66,7 @@ namespace Enterprise
             }
         }
 
+        // Filter method for the Employee Data Collection - Needs to be updated on property changes.
         private bool FilterEmployees(object obj)
         {
             if (obj is EmployeeData employee)
@@ -78,16 +78,73 @@ namespace Enterprise
                 return employee.EmployeeName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeTitle.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeePhone.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeType.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeEmail.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }
 
+        // Changes the active tab button style for the selected tab
+        private void SetActiveTabButton(Button activeButton)
+        {
+            // Reset styles for all buttons in the tab panel
+            foreach (var child in TabButtonPanel.Children) 
+            {
+                if (child is Button button)
+                {
+                    // Reset to the default style
+                    button.Style = (Style)FindResource("TabButton"); 
+                }
+            }
+            activeButton.Style = (Style)FindResource("ActiveTabButtonStyle");
+        }
+
+        // Tab Button for All Employees - Filter All
+        public void FilterAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            _filteredEmployees.Filter = FilterEmployees;
+            _filteredEmployees.Refresh();
+            SetActiveTabButton((Button)sender);
+        }
+
+        // Tab Button for Permanent Employees - Filter Permanent
+        public void FilterPermanentButton_Click(object sender, RoutedEventArgs e)
+        {
+            _filteredEmployees.Filter = employee =>
+            {
+                if (employee is EmployeeData emp)
+                {
+                    return emp.EmployeeType.Equals("Permanent", StringComparison.OrdinalIgnoreCase);
+                }
+                return false;
+            };
+            _filteredEmployees.Refresh();
+            SetActiveTabButton((Button)sender);
+        }
+
+        // Tab Button for Temporary Employees - Filter Temporary
+        public void FilterTemporaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            _filteredEmployees.Filter = employee =>
+            {
+                if (employee is EmployeeData emp)
+                {
+                    return emp.EmployeeType.Equals("Temporary", StringComparison.OrdinalIgnoreCase);
+                }
+                return false;
+            };
+            _filteredEmployees.Refresh();
+            SetActiveTabButton((Button)sender);
+        }
+
+        // General purpose Property Changed Logic
+        public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // Button Click Events
         public void AddButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;

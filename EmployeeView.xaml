@@ -11,7 +11,6 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Page.Resources>
 
-
     <Border Background="#eff2f7" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -19,24 +18,22 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Left Side Architecture-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Column="1" Grid.Row="1">
+                
                 <!--Page Title-->
                 <TextBlock Text="Employees" Grid.Row="1" FontSize="32"  Style="{StaticResource TitleText}"/>
 
                 <Grid Grid.Column="1" Grid.Row="2">
 
                     <!--Add Button-->
-                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0"
-                            Click="AddButton_Click">
+                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0" Click="AddButton_Click">
                         <StackPanel Orientation="Horizontal">
-                            <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11"
-                           Margin="0,1,0,0"/>
+                            <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0,1,0,0"/>
                             <TextBlock Text="Add New" Margin="3,0,0,0"/>
                         </StackPanel>
                     </Button>
@@ -45,16 +42,14 @@
                 <!--Visual Seperator-->
                 <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,117,0,0" VerticalAlignment="Top"/>
 
-                <!--Small Tab Buttons-->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,117,0,0" VerticalAlignment="Top">
-                    <Button Content="All" Style="{StaticResource TabButton}" Margin="5,2,-10,0"/>
-                    <Button Content="Permanent" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
-                    <Button Content="Temporary" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
+                <!--Tab Buttons-->
+                <StackPanel x:Name="TabButtonPanel" Grid.Row="2" Orientation="Horizontal" Margin="0,117,0,0" VerticalAlignment="Top">
+                    <Button Content="All" Click="FilterAllButton_Click" Style="{StaticResource TabButton}" Margin="5,2,-10,0"/>
+                    <Button Content="Permanent" Click="FilterPermanentButton_Click" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
+                    <Button Content="Temporary" Click="FilterTemporaryButton_Click" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                 </StackPanel>
 
-                <TextBlock Text="Filter by:" Grid.Row="4" FontSize="12" FontWeight="SemiBold"
-                                   Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                   Margin="0,129,180,0"/>
+                <TextBlock Text="Filter by:" Grid.Row="4" FontSize="12" FontWeight="SemiBold" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,129,180,0"/>
 
                 <!--Filter Box-->
                 <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-275,25,0">
@@ -63,6 +58,7 @@
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="5">
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="249*"/>
                     <ColumnDefinition Width="151*"/>
@@ -70,22 +66,15 @@
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,170,10,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,155,15,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
 
                         <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeName}"/>
                         <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
                         <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
                         <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
 
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="125">
+                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
