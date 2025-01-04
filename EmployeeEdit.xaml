@@ -26,13 +26,13 @@
             <Grid Grid.Column="1" Grid.Row="1">
                 
                 <!--Page Title-->
-                <TextBlock Text="Employees" Grid.Row="1" Style="{StaticResource TitleText}"/>
+                <TextBlock Text="Employees" Grid.Row="1" FontSize="32"  Style="{StaticResource TitleText}" Margin="10,20,0,0"/>
 
                 <Grid Grid.Column="1" Grid.Row="2">
                     
 
                     <!--Editing Button-->
-                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,82,25,0">
+                    <Button Style="{StaticResource AddButton}" VerticalAlignment="Top" Margin="0,45,25,0">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="BookEdit" VerticalAlignment="Center" Width="11" Height="11" Margin="0,1,0,0"/>
                             <TextBlock Text="Editing" Margin="3,0,0,0"/>
@@ -41,15 +41,16 @@
                 </Grid>
             </Grid>
 
-            <Border Grid.Column="1" Grid.Row="5" Background="#26331d" CornerRadius="8" Margin="15,125,15,15">
+            <Border Grid.Column="1" Grid.Row="5" Background="#26331d" CornerRadius="8" Margin="15,95,15,20">
                 <DockPanel Margin="20,0,0,0">
                     
                     <!--First Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,35,0,0">
                         <Button Click="UploadPictureButton_Click" Style="{StaticResource UploadPictureButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,20">
-                            <Border BorderBrush="White" BorderThickness="0" CornerRadius="20" Height="150" Width="150" ClipToBounds="True">
+                            <Border Height="150" Width="150" ClipToBounds="True">
                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image x:Name="EmployeeImage" Source="{Binding EmployeeImagePath}" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image x:Name="EmployeeImage" Source="{Binding EmployeeImagePath, FallbackValue='pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg'}" 
+                                           Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
                             </Border>
                         </Button>

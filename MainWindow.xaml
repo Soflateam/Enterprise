@@ -28,11 +28,11 @@
             </Grid.RowDefinitions>
 
             <!--Left Side Color and Menus-->
-            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,7"
+            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,10"
                     HorizontalAlignment="Left">
                 <DockPanel>
-                    <Border Width="75" Height="75" Padding="3" Background="White" CornerRadius="50"
-                            DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="45,20,0,0">
+                    <Border Width="100" Height="100" Padding="3" Background="White" CornerRadius="50"
+                            DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20,40,0,0">
                         <Ellipse>
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="pack://application:,,,/Assets/Images/MainMenuLogo.jpg"/>
@@ -40,16 +40,17 @@
                         </Ellipse>
                     </Border>
 
-                    <TextBlock Text="Shenzee Kotowski" Padding="3,0,0,0" Margin="10,10,15,0" DockPanel.Dock="Top"
-                               FontWeight="Medium" FontSize="18" Foreground="White" FontFamily="Book Antiqua"/>
+                    <TextBlock Text="ShenzeeCorp" Padding="3,0,0,0" Margin="10,30,15,0" DockPanel.Dock="Top"
+                               FontWeight="Medium" FontSize="18" Foreground="White" FontFamily="Book Antiqua"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                    <Separator Margin="25,12,25,10" DockPanel.Dock="Top" Height="1" Background="White" Foreground="White"/>
+                    <Separator Margin="25,15,25,10" DockPanel.Dock="Top" Height="1" Background="White" Foreground="White"/>
 
                     <StackPanel DockPanel.Dock="Top">
                         <Button Style="{StaticResource LeftMenuButtons}" x:Name="DashboardViewButton"
                                 Click="DashboardViewButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="HomeVariant" Margin="15,3,0,0" Foreground="White"/>
+                                <Icon:PackIconMaterial Kind="HomeVariant" Margin="10,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Dashboard" Margin="5,0,0,0" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
@@ -57,30 +58,23 @@
                         <Button Style="{StaticResource LeftMenuButtons}" x:Name="EmployeesViewButton"
                                     Click="EmployeesViewButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="MonitorAccount" Margin="15,3,0,0" Foreground="White"/>
+                                <Icon:PackIconMaterial Kind="MonitorAccount" Margin="10,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Employees" Margin="5,0,0,0" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource LeftMenuButtons}">
+                        <Button Style="{StaticResource LeftMenuButtons}" Padding="5,5,5,5">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="AccountCard" Margin="15,3,0,0" Foreground="White"/>
+                                <Icon:PackIconMaterial Kind="AccountCard" Margin="10,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Hardware" Margin="5,0,0,0" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
 
                         <Button Style="{StaticResource LeftMenuButtons}" x:Name="SoftwareViewButton"
-                                Click="SoftwareViewButton_Click">
+                                Click="SoftwareViewButton_Click" Padding="5,5,5,5">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="AccessPoint" Margin="15,3,0,0" Foreground="White"/>
+                                <Icon:PackIconMaterial Kind="AccessPoint" Margin="10,3,0,0" Foreground="White"/>
                                 <TextBlock Text="Software" Margin="5,0,0,0" TextAlignment="Center"/>
-                            </StackPanel>
-                        </Button>
-
-                        <Button Style="{StaticResource LeftMenuButtons}">
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="AccessPoint" Margin="15,3,0,0" Foreground="White"/>
-                                <TextBlock Text="Phones" Margin="5,0,0,0" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -119,8 +113,7 @@
 
             <Grid Grid.Column="1" Grid.Row="5">
 
-                <Frame x:Name="ContentFrame" Source="Dashboard.xaml" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center"
-                       />
+                <Frame x:Name="ContentFrame" Source="Dashboard.xaml" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
         </Grid>
     </Border>

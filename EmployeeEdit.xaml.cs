@@ -20,11 +20,12 @@ using System.Drawing.Imaging;
 using static Enterprise.App;
 using static Enterprise.MainWindow;
 using Path = System.IO.Path;
+using CsvHelper.Configuration.Attributes;
 
 namespace Enterprise
 {
     /// <summary>
-    /// Interaction logic for EmployeeView.xaml
+    /// Interaction logic for EmployeeEdit.xaml
     /// </summary>
     public partial class EmployeeEdit : Page
     {
@@ -70,6 +71,11 @@ namespace Enterprise
                         // Update the image path for the employee if a new image has been uploaded
                         EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
                     }
+                    else
+                    {
+                        employee.EmployeeImagePath = "pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg";
+                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath, UriKind.Absolute));
+                    }
 
                     employees.Add(employee);
                 }
@@ -97,7 +103,7 @@ namespace Enterprise
             {
                 if (string.IsNullOrEmpty(employee.EmployeeName))
                 {
-                    MessageBox.Show("Name is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Please enter a Name first.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
@@ -147,7 +153,7 @@ namespace Enterprise
 
                             File.Delete(oldFile);  // Try to delete the old image
                         }
-                        catch (IOException ex)
+                        catch
                         {
 
                         }

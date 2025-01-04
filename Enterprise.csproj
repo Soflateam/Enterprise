@@ -13,10 +13,13 @@
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
+    <None Remove="Assets\Images\EmployeePlaceholder.jpg" />
     <None Remove="Assets\Images\MainMenuLogo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Images\EmployeePlaceholder.jpg" />
+    <Resource Include="Assets\Images\MainMenuLogo.jpg" />
     <Resource Include="Assets\Main.ico" />
   </ItemGroup>
 
@@ -29,12 +32,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\Images\MainMenuLogo.jpg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
   <ItemGroup>

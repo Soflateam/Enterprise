@@ -157,7 +157,10 @@ namespace Enterprise
             {
                 if (mainWindow.ContentFrame.Content is EmployeeEdit employeeEdit)
                 {
-                    employeeEdit.DataContext = new EmployeeData(); // Set empty DataContext for new entry
+                    var newEmployee = new EmployeeData();
+                    newEmployee.EmployeeImagePath = "pack://application:,,,/Assets/images/employeeplaceholder.png"; // Set the placeholder image
+                    employeeEdit.DataContext = newEmployee;
+
                 }
             };
         }
@@ -214,10 +217,9 @@ namespace Enterprise
                         // Delete the file
                         File.Delete(file);
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        // Handle any errors during deletion (e.g., file is in use)
-                        MessageBox.Show($"Error deleting photo: {ex.Message}");
+
                     }
                 }
 
