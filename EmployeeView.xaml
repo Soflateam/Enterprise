@@ -44,7 +44,7 @@
 
                 <!--Tab Buttons-->
                 <StackPanel x:Name="TabButtonPanel" Grid.Row="2" Orientation="Horizontal" Margin="0,117,0,0" VerticalAlignment="Top">
-                    <Button Content="All" Click="FilterAllButton_Click" Style="{StaticResource TabButton}" Margin="5,2,-10,0"/>
+                    <Button Content="All" Click="FilterAllButton_Click" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                     <Button Content="Permanent" Click="FilterPermanentButton_Click" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                     <Button Content="Temporary" Click="FilterTemporaryButton_Click" Style="{StaticResource TabButton}" Margin="5,2,0,0"/>
                 </StackPanel>
@@ -66,7 +66,7 @@
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,155,15,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,160,15,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeName}"/>
