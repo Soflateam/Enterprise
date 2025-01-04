@@ -89,15 +89,11 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeName}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Padding" Value="2,0,0,0"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeFirstName}"/>
+                        <DataGridTextColumn Header="Last Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeLastName}"/>
+                        <DataGridTextColumn Header="Department" IsReadOnly="True" Width="*" Binding="{Binding EmployeeDepartment}"/>
                         <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
-                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="120" Binding="{Binding EmployeePhone}"/>
+                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
                         <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
 
                         <DataGridTemplateColumn IsReadOnly="True" Width="100">

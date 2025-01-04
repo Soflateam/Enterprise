@@ -24,25 +24,30 @@ Offboarded
 Expanded Employee Fields:
 
 Personal Information
-First Name
-Middle Name
-Last Name
-Employee Picture
+	Employee Picture
+	First Name
+	Middle Name
+	Last Name
 
 Employment Information
-Employee Type
-Employee Status
+	Employee Title
+	Employee Department
+	Employee Manager
+	Employee Type
+
+
+	Employee Email
+	Employee Phone
+	Employee Location
+
+	Employee Address
+	Employee City
+	Employee State
+	Employee Zip
+
+Employee Status 
 Employee Start Date
 Employee End Date
-Employee Department
-Employee Title
-Employee Manager
-
-Contact Information
-Employee Location
-Employee Address
-Employee Email
-Employee Phone
 
 
 
