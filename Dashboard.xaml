@@ -1,18 +1,120 @@
-﻿<Page x:Class="Enterprise.EmployeeAdd"
+﻿<Page x:Class="Enterprise.Dashboard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Enterprise"
-      Height="600" Width="800" 
+      Height="550" Width="800" 
       Title="DashboardView">
 
-    <Grid>
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
 
-        <Grid Grid.Column="1" Grid.Row="1">
-            <!--Page Title-->
-            <TextBlock Text="Dashboard" Grid.Row="1"  Style="{StaticResource TitleText}"/>
+    <Border Background="#eff2f7" CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4">
+                <!-- Page Title -->
+                <TextBlock Text="Dashboard" Grid.Row="1" FontSize="32" Style="{StaticResource TitleText}" Margin="10,20,0,0"/>
+
+                <!--Visual Seperator-->
+                <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,80,0,0" VerticalAlignment="Top"/>
+            </Grid>
+
+
+            <Grid Grid.Column="1" Grid.Row="2">
+
+                <Border CornerRadius="10,75,10,10" Width="225" Height="275" HorizontalAlignment="Left" Margin="25,15,0,15">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#26331d" Offset="0"/>
+                            <GradientStop Color="#a4b39f" Offset="6"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <TextBlock Text="Employee Statistics" Grid.Row="1" FontSize="18"  Style="{StaticResource TitleText}" Margin="10,10,0,0" Foreground="White"/>
+                        <StackPanel HorizontalAlignment="Left" Margin="20,20,0,0">
+                            <TextBlock Text="Permanent" Grid.Row="1" FontSize="12" Margin="10,30,0,0" Foreground="White"/>
+                            <TextBlock Text="Onboarding" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Offboarding" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Margin="20,160,0,0">
+                            <TextBlock Text="Temporary" Grid.Row="1" FontSize="12" Margin="10,0,0,0" Foreground="White"/>
+                            <TextBlock Text="Onboarding" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Offboarding" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2">
+
+                <Border CornerRadius="10,10,10,10" Width="400" Height="275" HorizontalAlignment="Left" Margin="0,15,15,15">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#26331d" Offset="0"/>
+                            <GradientStop Color="#a4b39f" Offset="6"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <TextBlock Text="Hardware Facts" Grid.Row="1" FontSize="18"  Style="{StaticResource TitleText}" Margin="10,10,0,0" Foreground="White"/>
+                        <StackPanel HorizontalAlignment="Left" Margin="20,20,0,0">
+                            <TextBlock Text="Computers" Grid.Row="1" FontSize="12" Margin="10,30,0,0" Foreground="White"/>
+                            <TextBlock Text="Model 1" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Model 2" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Margin="20,160,0,0">
+                            <TextBlock Text="Mobile Devices" Grid.Row="1" FontSize="12" Margin="10,0,0,0" Foreground="White"/>
+                            <TextBlock Text="Phones" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Tablets" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Center" Margin="90,50,0,0">
+                            <TextBlock Text="Replacement Status" Grid.Row="1" FontSize="12" Margin="10,0,0,0" Foreground="White"/>
+                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="2">
+
+                <Border CornerRadius="10,10,10,10" Width="600" Height="125" HorizontalAlignment="Left" Margin="45,15,15,15">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#26331d" Offset="0"/>
+                            <GradientStop Color="#a4b39f" Offset="6"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <TextBlock Text="Software Statistics" Grid.Row="1" FontSize="18"  Style="{StaticResource TitleText}" Margin="10,10,0,0" Foreground="White"/>
+                        <StackPanel HorizontalAlignment="Left" Margin="20,20,0,0">
+                            <TextBlock Text="Software Name" Grid.Row="1" FontSize="12" Margin="10,30,0,0" Foreground="White"/>
+                            <TextBlock Text="Quanity of Licenses" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
 
         </Grid>
-    </Grid>
+    </Border>
 </Page>
