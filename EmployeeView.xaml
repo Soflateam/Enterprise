@@ -70,7 +70,7 @@
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,170,10,45" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,170,10,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
