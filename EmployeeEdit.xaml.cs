@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.Drawing.Imaging;
 using static Enterprise.App;
 using static Enterprise.MainWindow;
 using Path = System.IO.Path;
@@ -91,36 +93,63 @@ namespace Enterprise
 
         private void UploadPictureButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create an OpenFileDialog instance
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            if (DataContext is EmployeeData employee)
             {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-                Title = "Select a Picture"
-            };
-
-            // Show the dialog and check if the user selected a file
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string sourceFile = openFileDialog.FileName;
-                string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
-
-                if (!Directory.Exists(destinationDirectory))
+                if (string.IsNullOrEmpty(employee.EmployeeName))
                 {
-                    Directory.CreateDirectory(destinationDirectory);
+                    MessageBox.Show("Name is missing.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
 
-                if (DataContext is EmployeeData employee)
+                // Create an OpenFileDialog instance
+                OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    // Delete the old photo if it exists
-                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath) && File.Exists(employee.EmployeeImagePath))
+                    Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+                    Title = "Select a Picture"
+                };
+
+                // Show the dialog and check if the user selected a file
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string sourceFile = openFileDialog.FileName;
+                    string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
+
+                    if (!Directory.Exists(destinationDirectory))
+                    {
+                        Directory.CreateDirectory(destinationDirectory);
+                    }
+
+                    EmployeeImage.Source = null;  // Release old image
+
+                    // Access the ImageBrush by its name and clear the ImageSource
+                    var imageBrush = (ImageBrush)this.FindName("EmployeeImageListView");
+                    if (imageBrush != null)
+                    {
+                        imageBrush.ImageSource = null;  // Release old image
+                    }
+
+
+                    // Search for old photos in the directory containing the employee's name
+                    var oldFiles = Directory.GetFiles(destinationDirectory)
+                                            .Where(file => file.Contains(employee.EmployeeName, StringComparison.OrdinalIgnoreCase))
+                                            .ToList();
+
+                    // Delete old files if they exist
+                    foreach (var oldFile in oldFiles)
                     {
                         try
                         {
-                            File.Delete(employee.EmployeeImagePath);
+                            // Check if the file is in use (locked) before deleting
+                            if (IsFileLocked(oldFile))
+                            {
+                                continue;
+                            }
+
+                            File.Delete(oldFile);  // Try to delete the old image
                         }
-                        catch (Exception ex)
+                        catch (IOException ex)
                         {
-                            MessageBox.Show($"Error deleting old photo: {ex.Message}");
+
                         }
                     }
 
@@ -139,27 +168,92 @@ namespace Enterprise
 
                     try
                     {
-                        // Copy the file to the destination directory
-                        File.Copy(sourceFile, destinationPath, true);
+                        // Load the image
+                        using (Bitmap sourceBitmap = new Bitmap(sourceFile))
+                        {
 
-                        // Update the employee's ImagePath property with the new file path
+                            RotateImageIfNeeded(sourceBitmap);
+
+                            // Set the maximum width or height for the scaled image
+                            int maxWidth = 500; 
+                            int maxHeight = 500;
+
+                            // Calculate the aspect ratio
+                            float aspectRatio = (float)sourceBitmap.Width / sourceBitmap.Height;
+
+                            int newWidth = maxWidth;
+                            int newHeight = (int)(maxWidth / aspectRatio); // Scale height based on width
+
+                            // If the calculated height exceeds the max height, adjust the width
+                            if (newHeight > maxHeight)
+                            {
+                                newHeight = maxHeight;
+                                newWidth = (int)(maxHeight * aspectRatio); // Scale width based on height
+                            }
+
+                            // Create a new resized bitmap while maintaining the aspect ratio
+                            using (Bitmap resizedBitmap = new Bitmap(sourceBitmap, new System.Drawing.Size(newWidth, newHeight)))
+                            {
+                                // Save the resized image to the destination path
+                                resizedBitmap.Save(destinationPath, ImageFormat.Jpeg);
+                            }
+                        }
+
+                        // Update the employee's ImagePath property with the new file path (string)
                         employee.EmployeeImagePath = destinationPath;
 
-                        // Refresh the Image control (if you have an Image control bound to the EmployeeImagePath)
+                        // Refresh the Image control
                         if (employee.EmployeeImagePath != null)
                         {
-                            // Assuming you have an Image control called "EmployeeImage"
                             // Update the Source of the Image control to show the new picture
                             EmployeeImage.Source = new BitmapImage(new Uri(destinationPath));
                         }
-
-                        MessageBox.Show("Picture uploaded and replaced successfully.");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error uploading picture: {ex.Message}");
                     }
                 }
+            }
+        }
+
+        // Function to handle rotation if needed (based on EXIF data)
+        private void RotateImageIfNeeded(Bitmap image)
+        {
+            const int orientationId = 0x0112; // EXIF tag for orientation
+            if (image.PropertyIdList.Contains(orientationId))
+            {
+                int orientationValue = image.GetPropertyItem(orientationId).Value[0];
+
+                switch (orientationValue)
+                {
+                    case 3:
+                        image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        break;
+                    case 6:
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        break;
+                    case 8:
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        break;
+                }
+            }
+        }
+
+        // Function to check if the file is locked (in use)
+        private bool IsFileLocked(string filePath)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                {
+                    // If we can open the file for reading and writing with no sharing, the file is not locked
+                    return false;
+                }
+            }
+            catch (IOException)
+            {
+                // If the file is locked (in use), an IOException will be thrown
+                return true;
             }
         }
 
