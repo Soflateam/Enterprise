@@ -18,6 +18,8 @@ using static Enterprise.MainWindow;
 using static Enterprise.EmployeeEdit;
 using System.Globalization;
 using System.ComponentModel;
+using System.IO;
+using Path = System.IO.Path;
 
 namespace Enterprise
 {
@@ -188,18 +190,45 @@ namespace Enterprise
 
         public void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Get the selected employee from the ListBox
+            // Get the selected employee from the DataGrid
             EmployeeData selectedEmployee = (EmployeeData)EmployeesDataGrid.SelectedItem;
 
             if (selectedEmployee != null)
             {
+                // Define the directory where employee photos are stored
+                string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
+
+                // Search for photos associated with the employee (based on their name)
+                var matchingFiles = Directory.GetFiles(destinationDirectory)
+                                              .Where(file => file.Contains(selectedEmployee.EmployeeName, StringComparison.OrdinalIgnoreCase))
+                                              .ToList();
+
+                // Refresh the DataGrid to update the UI and release any bindings
+                EmployeesDataGrid.Items.Refresh();
+
+                // Delete the matching photo files
+                foreach (var file in matchingFiles)
+                {
+                    try
+                    {
+                        // Delete the file
+                        File.Delete(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any errors during deletion (e.g., file is in use)
+                        MessageBox.Show($"Error deleting photo: {ex.Message}");
+                    }
+                }
+
                 // Remove the employee from the Employees collection
                 ((App)Application.Current).Employees.Remove(selectedEmployee);
 
                 // Save the updated data to the file
                 ((App)Application.Current).SaveDataToFileEmployees();
 
-
+                // Optionally, refresh the DataGrid to reflect the changes
+                EmployeesDataGrid.Items.Refresh();
             }
         }
     }

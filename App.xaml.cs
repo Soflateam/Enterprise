@@ -35,6 +35,7 @@ namespace Enterprise
             public string EmployeePhone { get; set; }
             public string EmployeeEmail { get; set; }
             public string EmployeeType { get; set; }
+            public string EmployeeImagePath { get; set; }
         }
 
         // Save and Load Data to and from File Logic - CSV Based - Employees
@@ -42,7 +43,17 @@ namespace Enterprise
         {
             try
             {
-                var saveFilePath = "C:\\Temp\\EmployeeData.csv"; // Replace
+                // Get the base directory of the application and nest the file in the "Data" folder
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var dataDirectory = Path.Combine(baseDirectory, "Data");
+
+                // Create the Data directory if it doesn't exist
+                if (!Directory.Exists(dataDirectory))
+                {
+                    Directory.CreateDirectory(dataDirectory);
+                }
+
+                var saveFilePath = Path.Combine(dataDirectory, "EmployeeData.csv");
 
                 var configCsv = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
@@ -57,7 +68,6 @@ namespace Enterprise
             }
             catch (Exception ex)
             {
-
             }
         }
 
@@ -65,8 +75,15 @@ namespace Enterprise
         {
             try
             {
-                var openFilePath = "C:\\Temp\\EmployeeData.csv"; // Replace
+                // Get the base directory of the application and nest the file in the "Data" folder
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var dataDirectory = Path.Combine(baseDirectory, "Data");
+                var openFilePath = Path.Combine(dataDirectory, "EmployeeData.csv");
 
+                // Check if the file exists before attempting to read it
+                if (!File.Exists(openFilePath))
+                {
+                }
 
                 var configCsv = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
@@ -87,9 +104,9 @@ namespace Enterprise
             }
             catch (Exception ex)
             {
-
             }
         }
+
     }
 }
 

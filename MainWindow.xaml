@@ -14,7 +14,7 @@
 
 
     <!--Left Side Menu Grid-->
-    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -35,7 +35,7 @@
                             DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="45,20,0,0">
                         <Ellipse>
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="C:\Users\sofla\source\repos\Enterprise\Assets\Images\ShenzeeProfile.jpg"/>
+                                <ImageBrush ImageSource="pack://application:,,,/Assets/Images/MainMenuLogo.jpg"/>
                             </Ellipse.Fill>
                         </Ellipse>
                     </Border>

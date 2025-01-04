@@ -35,29 +35,29 @@ namespace Enterprise
             }
         }
 
-        private bool IsMaximized = false;
-
-        public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (IsMaximized)
+        /* Removed logic for maximizing window on double click
+                private bool IsMaximized = false;
+                public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
                 {
-                    this.WindowState = WindowState.Normal;
-                    this.Width = 1080;
-                    this.Height = 720;
+                    if (e.ClickCount == 2)
+                    {
+                        if (IsMaximized)
+                        {
+                            this.WindowState = WindowState.Normal;
+                            this.Width = 1080;
+                            this.Height = 720;
 
-                    IsMaximized = false;
+                            IsMaximized = false;
+                        }
+                        else
+                        {
+                            this.WindowState = WindowState.Maximized;
+
+                            IsMaximized = true;
+                        }
+                    }
                 }
-                else
-                {
-                    this.WindowState = WindowState.Maximized;
-
-                    IsMaximized = true;
-                }
-            }
-        }
-
+        */
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
                 this.Close();
