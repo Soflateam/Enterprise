@@ -158,7 +158,7 @@ namespace Enterprise
                 if (mainWindow.ContentFrame.Content is EmployeeEdit employeeEdit)
                 {
                     var newEmployee = new EmployeeData();
-                    newEmployee.EmployeeImagePath = "pack://application:,,,/Assets/images/employeeplaceholder.png"; // Set the placeholder image
+                    newEmployee.EmployeeImagePath = "pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg"; // Set the placeholder image
                     employeeEdit.DataContext = newEmployee;
 
                 }
@@ -198,39 +198,57 @@ namespace Enterprise
 
             if (selectedEmployee != null)
             {
-                // Define the directory where employee photos are stored
-                string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
+                // Show a confirmation dialog box
+                MessageBoxResult result = MessageBox.Show(
+                    "Are you sure you want to Permanently delete this employee?\n",
+                    "Confirm Employee Deletion",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
 
-                // Search for photos associated with the employee (based on their name)
-                var matchingFiles = Directory.GetFiles(destinationDirectory)
-                                              .Where(file => file.Contains(selectedEmployee.EmployeeName, StringComparison.OrdinalIgnoreCase))
-                                              .ToList();
-
-                // Refresh the DataGrid to update the UI and release any bindings
-                EmployeesDataGrid.Items.Refresh();
-
-                // Delete the matching photo files
-                foreach (var file in matchingFiles)
+                if (result == MessageBoxResult.Yes)
                 {
-                    try
-                    {
-                        // Delete the file
-                        File.Delete(file);
-                    }
-                    catch
+                    // Create and show the custom confirmation dialog
+                    ConfirmationDialog confirmationDialog = new ConfirmationDialog();
+                    bool? secondaryresult = confirmationDialog.ShowDialog();
+
+                    if (secondaryresult == true && confirmationDialog.IsConfirmed)
                     {
 
-                    }
-                }
+                        // Define the directory where employee photos are stored
+                        string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
+
+                        // Search for photos associated with the employee (based on their name)
+                        var matchingFiles = Directory.GetFiles(destinationDirectory)
+                                                      .Where(file => file.Contains(selectedEmployee.EmployeeName, StringComparison.OrdinalIgnoreCase))
+                                                      .ToList();
+
+                        // Refresh the DataGrid to update the UI and release any bindings
+                        EmployeesDataGrid.Items.Refresh();
+
+                        // Delete the matching photo files
+                        foreach (var file in matchingFiles)
+                        {
+                            try
+                            {
+                                // Delete the file
+                                File.Delete(file);
+                            }
+                            catch
+                            {
+
+                            }
+                        }
 
                 // Remove the employee from the Employees collection
                 ((App)Application.Current).Employees.Remove(selectedEmployee);
 
-                // Save the updated data to the file
-                ((App)Application.Current).SaveDataToFileEmployees();
+                        // Save the updated data to the file
+                        ((App)Application.Current).SaveDataToFileEmployees();
 
-                // Optionally, refresh the DataGrid to reflect the changes
-                EmployeesDataGrid.Items.Refresh();
+                        // Optionally, refresh the DataGrid to reflect the changes
+                        EmployeesDataGrid.Items.Refresh();
+                    }
+                }
             }
         }
     }
