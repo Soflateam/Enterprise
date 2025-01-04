@@ -17,19 +17,76 @@ using static Enterprise.App;
 using static Enterprise.MainWindow;
 using static Enterprise.EmployeeEdit;
 using System.Globalization;
+using System.ComponentModel;
 
 namespace Enterprise
 {
     /// <summary>
     /// Interaction logic for EmployeeView.xaml
     /// </summary>
-    public partial class EmployeeView : Page
+    public partial class EmployeeView : Page, INotifyPropertyChanged
     {
+        private string _searchText;
+        private ICollectionView _filteredEmployees;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public EmployeeView()
         {
-            DataContext = (App)Application.Current;
+            InitializeComponent();
+
+            // Initialize the filtered view
+            _filteredEmployees = CollectionViewSource.GetDefaultView(((App)Application.Current).Employees);
+
+            // Add the filter method
+            _filteredEmployees.Filter = FilterEmployees;
+
+            DataContext = this;
         }
 
+        public ICollectionView FilteredEmployees
+        {
+            get => _filteredEmployees;
+            set
+            {
+                _filteredEmployees = value;
+                OnPropertyChanged(nameof(FilteredEmployees));
+            }
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+
+                // Refresh the filter when the search text changes
+                _filteredEmployees.Refresh();
+            }
+        }
+
+        private bool FilterEmployees(object obj)
+        {
+            if (obj is EmployeeData employee)
+            {
+                if (string.IsNullOrEmpty(SearchText))
+                    return true;
+
+                // Perform case-insensitive search
+                return employee.EmployeeName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeTitle.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeePhone.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeEmail.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+            return false;
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -84,12 +141,9 @@ namespace Enterprise
 
                 // Save the updated data to the file
                 ((App)Application.Current).SaveDataToFileEmployees();
-            }
-            else
-            {
-                MessageBox.Show("Please select an employee to remove.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+
             }
         }
-
     }
 }

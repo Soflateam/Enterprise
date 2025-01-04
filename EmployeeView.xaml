@@ -58,7 +58,7 @@
 
                 <!--Filter Box-->
                 <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-275,25,0">
-                    <TextBox x:Name="FilterText" Style="{StaticResource SearchFilterBox}"/>
+                    <TextBox x:Name="FilterText" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SearchFilterBox}"/>
                 </Grid>
             </Grid>
 
@@ -69,8 +69,8 @@
                 </Grid.ColumnDefinitions>
 
                 <!--Employees DataGrid-->
-                <DataGrid ItemsSource="{Binding Employees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                          Margin="15,170,10,10" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="15,170,10,45" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
