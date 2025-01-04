@@ -45,6 +45,7 @@ namespace Enterprise
                     existingEmployee.EmployeeTitle = TitleTextBox.Text;
                     existingEmployee.EmployeePhone = PhoneTextBox.Text;
                     existingEmployee.EmployeeEmail = EmailTextBox.Text;
+                    existingEmployee.EmployeeType = EmployeeTypeTextBox.Text;
                 }
                 else
                 {
@@ -53,6 +54,7 @@ namespace Enterprise
                     employee.EmployeeTitle = TitleTextBox.Text;
                     employee.EmployeePhone = PhoneTextBox.Text;
                     employee.EmployeeEmail = EmailTextBox.Text;
+                    employee.EmployeeType = EmployeeTypeTextBox.Text;
                     employees.Add(employee);
                 }
             }

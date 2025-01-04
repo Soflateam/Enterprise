@@ -12,6 +12,7 @@ namespace Enterprise
 {
     public partial class App : Application
     {
+        // Startup Events and Data Loading Triggers
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -20,19 +21,23 @@ namespace Enterprise
             mainWindow.Show();
 
             LoadDataFromFileEmployees();
-
         }
 
+        // Employee Related Functionality
+        // Creates EmployeeData Collection for Employee related functionality
         public ObservableCollection<EmployeeData> Employees { get; set; } = new ObservableCollection<EmployeeData>();
 
+        // EmployeeData Class for Employee related functionality - Needs updating when properties are changed
         public class EmployeeData
         {
             public string EmployeeName { get; set; }
             public string EmployeeTitle { get; set; }
             public string EmployeePhone { get; set; }
             public string EmployeeEmail { get; set; }
+            public string EmployeeType { get; set; }
         }
 
+        // Save and Load Data to and from File Logic - CSV Based - Employees
         public void SaveDataToFileEmployees()
         {
             try
@@ -49,7 +54,6 @@ namespace Enterprise
                 {
                     csv.WriteRecords(Employees);
                 }
-
             }
             catch (Exception ex)
             {
@@ -86,8 +90,6 @@ namespace Enterprise
 
             }
         }
-
     }
-
 }
 
