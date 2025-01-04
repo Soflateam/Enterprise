@@ -67,7 +67,7 @@
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="5,125,5,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="5,135,5,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn IsReadOnly="True" Width="80">
                             <DataGridTemplateColumn.CellTemplate>
@@ -92,15 +92,15 @@
                         <DataGridTextColumn Header="Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeName}">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
-                                    <Setter Property="Padding" Value="5,0,0,0"/>
+                                    <Setter Property="Padding" Value="2,0,0,0"/>
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
-                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="110" Binding="{Binding EmployeePhone}"/>
+                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="120" Binding="{Binding EmployeePhone}"/>
                         <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
 
-                        <DataGridTemplateColumn Header="Actions" IsReadOnly="True" Width="80">
+                        <DataGridTemplateColumn IsReadOnly="True" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
