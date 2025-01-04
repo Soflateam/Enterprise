@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static Enterprise.App;
 using static Enterprise.MainWindow;
+using Path = System.IO.Path;
 
 namespace Enterprise
 {
@@ -46,6 +49,11 @@ namespace Enterprise
                     existingEmployee.EmployeePhone = PhoneTextBox.Text;
                     existingEmployee.EmployeeEmail = EmailTextBox.Text;
                     existingEmployee.EmployeeType = EmployeeTypeTextBox.Text;
+                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
+                    {
+                        // Update the image path for the employee if a new image has been uploaded
+                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
+                    }
                 }
                 else
                 {
@@ -55,6 +63,12 @@ namespace Enterprise
                     employee.EmployeePhone = PhoneTextBox.Text;
                     employee.EmployeeEmail = EmailTextBox.Text;
                     employee.EmployeeType = EmployeeTypeTextBox.Text;
+                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
+                    {
+                        // Update the image path for the employee if a new image has been uploaded
+                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
+                    }
+
                     employees.Add(employee);
                 }
             }
@@ -73,6 +87,80 @@ namespace Enterprise
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
 
+        }
+
+        private void UploadPictureButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an OpenFileDialog instance
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
+                Title = "Select a Picture"
+            };
+
+            // Show the dialog and check if the user selected a file
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string sourceFile = openFileDialog.FileName;
+                string destinationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EmployeePhotos");
+
+                if (!Directory.Exists(destinationDirectory))
+                {
+                    Directory.CreateDirectory(destinationDirectory);
+                }
+
+                if (DataContext is EmployeeData employee)
+                {
+                    // Delete the old photo if it exists
+                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath) && File.Exists(employee.EmployeeImagePath))
+                    {
+                        try
+                        {
+                            File.Delete(employee.EmployeeImagePath);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error deleting old photo: {ex.Message}");
+                        }
+                    }
+
+                    // Sanitize the employee's name to create a valid file name
+                    string sanitizedEmployeeName = string.Join("_", employee.EmployeeName.Split(Path.GetInvalidFileNameChars()));
+                    string fileExtension = Path.GetExtension(sourceFile);
+                    string destinationPath = Path.Combine(destinationDirectory, $"{sanitizedEmployeeName}{fileExtension}");
+
+                    // Ensure no overwrites by appending a number if the file already exists
+                    int counter = 1;
+                    while (File.Exists(destinationPath))
+                    {
+                        destinationPath = Path.Combine(destinationDirectory, $"{sanitizedEmployeeName}_{counter}{fileExtension}");
+                        counter++;
+                    }
+
+                    try
+                    {
+                        // Copy the file to the destination directory
+                        File.Copy(sourceFile, destinationPath, true);
+
+                        // Update the employee's ImagePath property with the new file path
+                        employee.EmployeeImagePath = destinationPath;
+
+                        // Refresh the Image control (if you have an Image control bound to the EmployeeImagePath)
+                        if (employee.EmployeeImagePath != null)
+                        {
+                            // Assuming you have an Image control called "EmployeeImage"
+                            // Update the Source of the Image control to show the new picture
+                            EmployeeImage.Source = new BitmapImage(new Uri(destinationPath));
+                        }
+
+                        MessageBox.Show("Picture uploaded and replaced successfully.");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error uploading picture: {ex.Message}");
+                    }
+                }
+            }
         }
 
     }

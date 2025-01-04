@@ -60,6 +60,8 @@
                         <TextBlock Text="Email" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox x:Name="EmailTextBox" Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Button Content="Upload Picture" Click="UploadPictureButton_Click" />
                     </StackPanel>
 
                     <!--Second Column-->
@@ -76,6 +78,8 @@
 
                         <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox Style="{StaticResource EditInformationBox}"/>
+
+                        <Image x:Name="EmployeeImage" Source="{Binding EmployeeImagePath, UpdateSourceTrigger=PropertyChanged}" Height="75" Width="75" Margin="0,-15,0,0" />
                     </StackPanel>
 
                     <!--Third Column-->
