@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!--Left Side Color and Menus-->
-            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,10"
+            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,8"
                     HorizontalAlignment="Left">
                 <DockPanel>
                     <Border Width="100" Height="100" Padding="3" Background="White" CornerRadius="50"

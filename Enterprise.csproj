@@ -11,10 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TemplateContent.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
     <None Remove="Assets\Images\EmployeePlaceholder.jpg" />
     <None Remove="Assets\Images\MainMenuLogo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="TemplateContent.xaml" />
   </ItemGroup>
 
   <ItemGroup>

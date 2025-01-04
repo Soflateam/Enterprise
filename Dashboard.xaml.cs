@@ -18,9 +18,9 @@ namespace Enterprise
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class EmployeeAdd : Page
+    public partial class Dashboard : Page
     {
-        public EmployeeAdd()
+        public Dashboard()
         {
         }
     }
