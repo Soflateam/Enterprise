@@ -59,62 +59,76 @@
                             </Border>
                         </Button>
 
-                        <TextBlock Text="Full Name" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="FullNameTextBox" Style="{StaticResource EditInformationBox}"
-                                  Text="{Binding EmployeeName, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="First Name" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeFirstNameTextBox" Style="{StaticResource EditInformationBox}"
+                                  Text="{Binding EmployeeFirstName, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Text="Title" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="TitleTextBox" Style="{StaticResource EditInformationBox}"
-                                 Text="{Binding EmployeeTitle, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Middle Name" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeMiddleNameTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeMiddleName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Last Name" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeLastNameTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeLastName, UpdateSourceTrigger=PropertyChanged}"/>
+
                     </StackPanel>
 
                     <!--Second Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
 
+                        <TextBlock Text="Preferred Name" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeePreferredNameTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeePreferredName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Title" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeTitleTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeTitle, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Department" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeDepartmentTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeDepartment, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Manager" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeManagerTextBox" Style="{StaticResource EditInformationBox}"
+                                Text="{Binding EmployeeManager, UpdateSourceTrigger=PropertyChanged}"/>
+
                         <TextBlock Text="Employee Type" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox x:Name="EmployeeTypeTextBox" Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeeType, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Text="Phone" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="PhoneTextBox" Style="{StaticResource EditInformationBox}"
-                                 Text="{Binding EmployeePhone, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Text="Email" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="EmailTextBox" Style="{StaticResource EditInformationBox}"
-                                 Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
                     </StackPanel>
 
                     <!--Third Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="Location" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeLocationTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeLocation, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="Address" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeAddressTextBox"  Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeAddress, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="City" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeCityTextBox"  Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeCity, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="State" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeStateTextBox"  Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeState, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Zip" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeZipTextBox"  Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeZip, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!--Fourth Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="Email" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeEmailTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
-
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
-
-                        <TextBlock Text="Placeholder" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox Style="{StaticResource EditInformationBox}"/>
+                        <TextBlock Text="Phone" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeePhoneTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeePhone, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <!--Save Button-->
                         <Button x:Name="SaveButton" Margin="0,5,20,0" Click="SaveButton_Click" Style="{StaticResource AddButton}">

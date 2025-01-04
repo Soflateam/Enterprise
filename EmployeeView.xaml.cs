@@ -77,10 +77,20 @@ namespace Enterprise
                     return true;
 
                 // Perform case-insensitive search
-                return employee.EmployeeName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                return employee.EmployeeFirstName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeMiddleName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeLastName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeManager.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeDepartment.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeePreferredName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeTitle.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeePhone.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeType.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeLocation.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeAddress.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeCity.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeState.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeZip.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeEmail.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
@@ -219,7 +229,7 @@ namespace Enterprise
 
                         // Search for photos associated with the employee (based on their name)
                         var matchingFiles = Directory.GetFiles(destinationDirectory)
-                                                      .Where(file => file.Contains(selectedEmployee.EmployeeName, StringComparison.OrdinalIgnoreCase))
+                                                      .Where(file => file.Contains(selectedEmployee.EmployeeFirstName, StringComparison.OrdinalIgnoreCase))
                                                       .ToList();
 
                         // Refresh the DataGrid to update the UI and release any bindings

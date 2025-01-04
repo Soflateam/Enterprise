@@ -1,26 +1,14 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using static Enterprise.App;
-using static Enterprise.MainWindow;
 using Path = System.IO.Path;
-using CsvHelper.Configuration.Attributes;
 
 namespace Enterprise
 {
@@ -47,11 +35,22 @@ namespace Enterprise
                 if (existingEmployee != null)
                 {
                     // Update the existing employee
-                    existingEmployee.EmployeeName = FullNameTextBox.Text;
-                    existingEmployee.EmployeeTitle = TitleTextBox.Text;
-                    existingEmployee.EmployeePhone = PhoneTextBox.Text;
-                    existingEmployee.EmployeeEmail = EmailTextBox.Text;
+                    existingEmployee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
+                    existingEmployee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
+                    existingEmployee.EmployeeLastName = EmployeeLastNameTextBox.Text;
+                    existingEmployee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
+                    existingEmployee.EmployeeTitle = EmployeeTitleTextBox.Text;
+                    existingEmployee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
+                    existingEmployee.EmployeeManager = EmployeeManagerTextBox.Text;
                     existingEmployee.EmployeeType = EmployeeTypeTextBox.Text;
+                    existingEmployee.EmployeeEmail = EmployeeEmailTextBox.Text;
+                    existingEmployee.EmployeePhone = EmployeePhoneTextBox.Text;
+                    existingEmployee.EmployeeLocation = EmployeeLocationTextBox.Text;
+                    existingEmployee.EmployeeAddress = EmployeeAddressTextBox.Text;
+                    existingEmployee.EmployeeCity = EmployeeCityTextBox.Text;
+                    existingEmployee.EmployeeState = EmployeeStateTextBox.Text;
+                    existingEmployee.EmployeeZip = EmployeeZipTextBox.Text;
+
                     if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
                     {
                         // Update the image path for the employee if a new image has been uploaded
@@ -61,11 +60,22 @@ namespace Enterprise
                 else
                 {
                     // If not found, add as a new employee
-                    employee.EmployeeName = FullNameTextBox.Text;
-                    employee.EmployeeTitle = TitleTextBox.Text;
-                    employee.EmployeePhone = PhoneTextBox.Text;
-                    employee.EmployeeEmail = EmailTextBox.Text;
+                    employee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
+                    employee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
+                    employee.EmployeeLastName = EmployeeLastNameTextBox.Text;
+                    employee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
+                    employee.EmployeeTitle = EmployeeTitleTextBox.Text;
+                    employee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
+                    employee.EmployeeManager = EmployeeManagerTextBox.Text;
                     employee.EmployeeType = EmployeeTypeTextBox.Text;
+                    employee.EmployeeEmail = EmployeeEmailTextBox.Text;
+                    employee.EmployeePhone = EmployeePhoneTextBox.Text;
+                    employee.EmployeeLocation = EmployeeLocationTextBox.Text;
+                    employee.EmployeeAddress = EmployeeAddressTextBox.Text;
+                    employee.EmployeeCity = EmployeeCityTextBox.Text;
+                    employee.EmployeeState = EmployeeStateTextBox.Text;
+                    employee.EmployeeZip = EmployeeZipTextBox.Text;
+
                     if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
                     {
                         // Update the image path for the employee if a new image has been uploaded
@@ -101,7 +111,7 @@ namespace Enterprise
         {
             if (DataContext is EmployeeData employee)
             {
-                if (string.IsNullOrEmpty(employee.EmployeeName))
+                if (string.IsNullOrEmpty(employee.EmployeeFirstName))
                 {
                     MessageBox.Show("Please enter a Name first.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
@@ -137,7 +147,7 @@ namespace Enterprise
 
                     // Search for old photos in the directory containing the employee's name
                     var oldFiles = Directory.GetFiles(destinationDirectory)
-                                            .Where(file => file.Contains(employee.EmployeeName, StringComparison.OrdinalIgnoreCase))
+                                            .Where(file => file.Contains(employee.EmployeeFirstName, StringComparison.OrdinalIgnoreCase))
                                             .ToList();
 
                     // Delete old files if they exist
@@ -160,7 +170,7 @@ namespace Enterprise
                     }
 
                     // Sanitize the employee's name to create a valid file name
-                    string sanitizedEmployeeName = string.Join("_", employee.EmployeeName.Split(Path.GetInvalidFileNameChars()));
+                    string sanitizedEmployeeName = string.Join("_", employee.EmployeeFirstName.Split(Path.GetInvalidFileNameChars()));
                     string fileExtension = Path.GetExtension(sourceFile);
                     string destinationPath = Path.Combine(destinationDirectory, $"{sanitizedEmployeeName}{fileExtension}");
 
@@ -262,6 +272,5 @@ namespace Enterprise
                 return true;
             }
         }
-
     }
 }
