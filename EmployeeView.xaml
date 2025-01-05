@@ -69,7 +69,7 @@
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                           RowStyle="{DynamicResource DataGridRowStyle1}" Margin="5,135,5,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn IsReadOnly="True" Width="80">
+                        <DataGridTemplateColumn IsReadOnly="True" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -89,14 +89,14 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeFirstName}"/>
-                        <DataGridTextColumn Header="Last Name" IsReadOnly="True" Width="*" Binding="{Binding EmployeeLastName}"/>
+                        <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="90" Binding="{Binding EmployeeFirstName}"/>
+                        <DataGridTextColumn Header="Last Name" IsReadOnly="True" Width="100" Binding="{Binding EmployeeLastName}"/>
                         <DataGridTextColumn Header="Department" IsReadOnly="True" Width="*" Binding="{Binding EmployeeDepartment}"/>
                         <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
                         <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
                         <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
 
-                        <DataGridTemplateColumn IsReadOnly="True" Width="100">
+                        <DataGridTemplateColumn IsReadOnly="True" Width="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

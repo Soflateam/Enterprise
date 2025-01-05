@@ -25,78 +25,90 @@ namespace Enterprise
 
         public void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Check if DataContext is bound to an EmployeeData object
-            if (DataContext is EmployeeData employee)
+            // Ask the user for confirmation before saving
+            MessageBoxResult saveresult = MessageBox.Show(
+                "Are you sure you want to save the changes?",
+                "Confirm Save",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (saveresult == MessageBoxResult.Yes)
             {
-                // Check if the employee is already in the collection
-                ObservableCollection<EmployeeData> employees = ((App)Application.Current).Employees;
-                var existingEmployee = employees.FirstOrDefault(e => e == employee);
 
-                if (existingEmployee != null)
+                // Check if DataContext is bound to an EmployeeData object
+                if (DataContext is EmployeeData employee)
                 {
-                    // Update the existing employee
-                    existingEmployee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
-                    existingEmployee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
-                    existingEmployee.EmployeeLastName = EmployeeLastNameTextBox.Text;
-                    existingEmployee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
-                    existingEmployee.EmployeeTitle = EmployeeTitleTextBox.Text;
-                    existingEmployee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
-                    existingEmployee.EmployeeManager = EmployeeManagerTextBox.Text;
-                    existingEmployee.EmployeeType = EmployeeTypeTextBox.Text;
-                    existingEmployee.EmployeeEmail = EmployeeEmailTextBox.Text;
-                    existingEmployee.EmployeePhone = EmployeePhoneTextBox.Text;
-                    existingEmployee.EmployeeLocation = EmployeeLocationTextBox.Text;
-                    existingEmployee.EmployeeAddress = EmployeeAddressTextBox.Text;
-                    existingEmployee.EmployeeCity = EmployeeCityTextBox.Text;
-                    existingEmployee.EmployeeState = EmployeeStateTextBox.Text;
-                    existingEmployee.EmployeeZip = EmployeeZipTextBox.Text;
+                    // Check if the employee is already in the collection
+                    ObservableCollection<EmployeeData> employees = ((App)Application.Current).Employees;
+                    var existingEmployee = employees.FirstOrDefault(e => e == employee);
 
-                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
+                    if (existingEmployee != null)
                     {
-                        // Update the image path for the employee if a new image has been uploaded
-                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
-                    }
-                }
-                else
-                {
-                    // If not found, add as a new employee
-                    employee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
-                    employee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
-                    employee.EmployeeLastName = EmployeeLastNameTextBox.Text;
-                    employee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
-                    employee.EmployeeTitle = EmployeeTitleTextBox.Text;
-                    employee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
-                    employee.EmployeeManager = EmployeeManagerTextBox.Text;
-                    employee.EmployeeType = EmployeeTypeTextBox.Text;
-                    employee.EmployeeEmail = EmployeeEmailTextBox.Text;
-                    employee.EmployeePhone = EmployeePhoneTextBox.Text;
-                    employee.EmployeeLocation = EmployeeLocationTextBox.Text;
-                    employee.EmployeeAddress = EmployeeAddressTextBox.Text;
-                    employee.EmployeeCity = EmployeeCityTextBox.Text;
-                    employee.EmployeeState = EmployeeStateTextBox.Text;
-                    employee.EmployeeZip = EmployeeZipTextBox.Text;
+                        // Update the existing employee
+                        existingEmployee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
+                        existingEmployee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
+                        existingEmployee.EmployeeLastName = EmployeeLastNameTextBox.Text;
+                        existingEmployee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
+                        existingEmployee.EmployeeTitle = EmployeeTitleTextBox.Text;
+                        existingEmployee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
+                        existingEmployee.EmployeeManager = EmployeeManagerTextBox.Text;
+                        existingEmployee.EmployeeType = EmployeeTypeTextBox.Text;
+                        existingEmployee.EmployeeEmail = EmployeeEmailTextBox.Text;
+                        existingEmployee.EmployeePhone = EmployeePhoneTextBox.Text;
+                        existingEmployee.EmployeeLocation = EmployeeLocationTextBox.Text;
+                        existingEmployee.EmployeeAddress = EmployeeAddressTextBox.Text;
+                        existingEmployee.EmployeeCity = EmployeeCityTextBox.Text;
+                        existingEmployee.EmployeeState = EmployeeStateTextBox.Text;
+                        existingEmployee.EmployeeZip = EmployeeZipTextBox.Text;
 
-                    if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
-                    {
-                        // Update the image path for the employee if a new image has been uploaded
-                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
+                        if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
+                        {
+                            // Update the image path for the employee if a new image has been uploaded
+                            EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
+                        }
                     }
                     else
                     {
-                        employee.EmployeeImagePath = "pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg";
-                        EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath, UriKind.Absolute));
-                    }
+                        // If not found, add as a new employee
+                        employee.EmployeeFirstName = EmployeeFirstNameTextBox.Text;
+                        employee.EmployeeMiddleName = EmployeeMiddleNameTextBox.Text;
+                        employee.EmployeeLastName = EmployeeLastNameTextBox.Text;
+                        employee.EmployeePreferredName = EmployeePreferredNameTextBox.Text;
+                        employee.EmployeeTitle = EmployeeTitleTextBox.Text;
+                        employee.EmployeeDepartment = EmployeeDepartmentTextBox.Text;
+                        employee.EmployeeManager = EmployeeManagerTextBox.Text;
+                        employee.EmployeeType = EmployeeTypeTextBox.Text;
+                        employee.EmployeeEmail = EmployeeEmailTextBox.Text;
+                        employee.EmployeePhone = EmployeePhoneTextBox.Text;
+                        employee.EmployeeLocation = EmployeeLocationTextBox.Text;
+                        employee.EmployeeAddress = EmployeeAddressTextBox.Text;
+                        employee.EmployeeCity = EmployeeCityTextBox.Text;
+                        employee.EmployeeState = EmployeeStateTextBox.Text;
+                        employee.EmployeeZip = EmployeeZipTextBox.Text;
 
-                    employees.Add(employee);
+                        if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
+                        {
+                            // Update the image path for the employee if a new image has been uploaded
+                            EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath));
+                        }
+                        else
+                        {
+                            employee.EmployeeImagePath = "pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg";
+                            EmployeeImage.Source = new BitmapImage(new Uri(employee.EmployeeImagePath, UriKind.Absolute));
+                        }
+
+                        employees.Add(employee);
+                    }
                 }
-            }
 
             // Save the data to the file
             ((App)Application.Current).SaveDataToFileEmployees();
 
-            // Navigate back to the EmployeeView page
-            MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
+                // Navigate back to the EmployeeView page
+                MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+                mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
+            }
         }
 
         public void DiscardButton_Click(object sender, RoutedEventArgs e)

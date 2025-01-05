@@ -21,7 +21,7 @@
                 Margin="100,75,0,0" Width="75" Click="CancelPromptButton_Click"/>
 
         <Button Name="ConfirmButton" Content="Confirm"
-                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource AddButton}" Background="White" Foreground="Black"
                 Margin="-100,75,0,0" Width="75" Click="ConfirmButton_Click"/>
     </Grid>
 </Window>

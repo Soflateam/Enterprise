@@ -89,8 +89,8 @@
 
                         <StackPanel HorizontalAlignment="Center" Margin="90,50,0,0">
                             <TextBlock Text="Replacement Status" Grid.Row="1" FontSize="12" Margin="10,0,0,0" Foreground="White"/>
-                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
-                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="40,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="80,15,0,0" Foreground="White"/>
+                            <TextBlock Text="Remaining" Grid.Row="1" FontSize="12" Margin="80,15,0,0" Foreground="White"/>
                         </StackPanel>
                     </Grid>
                 </Border>
