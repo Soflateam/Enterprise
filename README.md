@@ -1,54 +1,31 @@
-Theme Colors
-Dark Green Background - #26331d
-Burnt Orange Buttons & Highlights - #8f3c00
-Button activate/Mouseovers - #994203
-Brighter Mouseover - #db5d02
-Top Buttons/Grays - #6e7783
-Seperators and Lines - #dae2ea
-Main Background - #eff2f7
+This project was a practice and proof of concepts to act as an Enterprise level employee and asset management system from an IT perspective with HR integrations.
+
+This would allow tracking of all employees, employement statuses such as onboard/offboarding, asset tracking, and software license and deployment tracking features. Software deployment functionality tied into the software license management GUI.
+
+All functionality works, saves data, imports and can perform complex searching of the data.
+
+**Dashboard view:**
+
+![gwFnOYDdaI](https://github.com/user-attachments/assets/5d97f9fc-ff50-4e24-9001-3169bfbb3a83)
+
+**All Employees list view:**
+
+![t6ofxEqCbu](https://github.com/user-attachments/assets/3663871e-d056-44cc-b9a0-1e41496f624e)
+
+**Editing Employee:**
+
+![KVrHPKfiUe](https://github.com/user-attachments/assets/10917696-6892-4965-98c7-c2ecd024b052)
+
+**Safely protect from deletion:**
+
+![SpEwWRhRhR](https://github.com/user-attachments/assets/83eb3fda-95da-4b40-b359-7cb29f577032)
 
 
-"0,0,0,0"
-From: Left,Top,Right,Bottom
-
-
-Employee Stages Types:
-
-In Queue
-Preparing for Employee
-Active Permanent Employee
-Active Temporary Employee
-Pending Outprocessing
-Offboarded
-
-Expanded Employee Fields:
-
-Personal Information
-	Employee Picture
-	First Name
-	Middle Name
-	Last Name
-
-Employment Information
-	Employee Title
-	Employee Department
-	Employee Manager
-	Employee Type
-
-
-	Employee Email
-	Employee Phone
-	Employee Location
-
-	Employee Address
-	Employee City
-	Employee State
-	Employee Zip
-
-Employee Status 
-Employee Start Date
-Employee End Date
-
-
-
-
+**Theme Colors**
+	Dark Green Background - #26331d
+	Burnt Orange Buttons & Highlights - #8f3c00
+	Button activate/Mouseovers - #994203
+	Brighter Mouseover - #db5d02
+	Top Buttons/Grays - #6e7783
+	Seperators and Lines - #dae2ea
+	Main Background - #eff2f7
