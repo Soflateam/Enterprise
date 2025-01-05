@@ -6,7 +6,7 @@ Resizes images and keeps aspect ratios, then stores the smaller files locally, a
 
 All functionality works, including data save/load, animations, and searching functionality.
 
-**Dashboard view:**
+**(Mockup) Dashboard view:**
 
 ![gwFnOYDdaI](https://github.com/user-attachments/assets/5d97f9fc-ff50-4e24-9001-3169bfbb3a83)
 
