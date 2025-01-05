@@ -1,6 +1,8 @@
 This project was a practice and proof of concepts to act as an Enterprise level employee and asset management system from an IT perspective with HR integrations.
 
-This would allow tracking of all employees, employement statuses such as onboard/offboarding, asset tracking, and software license and deployment tracking features. Software deployment functionality tied into the software license management GUI.
+This would allow tracking of all employees, including employment actions such as onboard/offboarding, asset tracking, and software license tracking features. 
+
+Software deployment functionality tied into the software license management GUI.
 
 All functionality works, saves data, imports and can perform complex searching of the data.
 
