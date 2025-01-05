@@ -2,9 +2,9 @@ This project was a practice and proof of concepts to act as an Enterprise level 
 
 This would allow tracking of all employees, including employment actions such as onboard/offboarding, asset tracking, and software license tracking features. 
 
-Software deployment functionality tied into the software license management GUI.
+Resizes images and keeps aspect ratios, then stores the smaller files locally, and it cleans up old data as it purges - with few exceptions due to tied up processes.
 
-All functionality works, saves data, imports and can perform complex searching of the data.
+All functionality works, including data save/load, animations, and searching functionality.
 
 **Dashboard view:**
 
