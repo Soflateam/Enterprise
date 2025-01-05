@@ -1,4 +1,4 @@
-This project was a practice and proof of concepts to act as an Enterprise level employee and asset management system from an IT perspective with HR integrations.
+This project was a practice and proof of concept to act as an enterprise level employee and asset management system with HR integrations and software deployment capabilities.
 
 This would allow tracking of all employees, including employment actions such as onboard/offboarding, asset tracking, and software license tracking features. 
 
