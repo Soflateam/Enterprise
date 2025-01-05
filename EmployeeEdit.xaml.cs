@@ -104,7 +104,32 @@ namespace Enterprise
             // Navigate back to the EmployeeView page
             MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
+            ClearEmployeeEditForm();
+        }
 
+        private void ClearEmployeeEditForm()
+        {
+            // Clear all textboxes
+            EmployeeFirstNameTextBox.Clear();
+            EmployeeMiddleNameTextBox.Clear();
+            EmployeeLastNameTextBox.Clear();
+            EmployeePreferredNameTextBox.Clear();
+            EmployeeTitleTextBox.Clear();
+            EmployeeDepartmentTextBox.Clear();
+            EmployeeManagerTextBox.Clear();
+            EmployeePhoneTextBox.Clear();
+            EmployeeEmailTextBox.Clear();
+            EmployeeTypeTextBox.Clear();
+            EmployeeLocationTextBox.Clear();
+            EmployeeAddressTextBox.Clear();
+            EmployeeCityTextBox.Clear();
+            EmployeeStateTextBox.Clear();
+            EmployeeZipTextBox.Clear();
+
+            // Reset the image to the placeholder or the original image
+            EmployeeImage.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg"));
+
+            ((App)Application.Current).LoadDataFromFileEmployees();
         }
 
         private void UploadPictureButton_Click(object sender, RoutedEventArgs e)
