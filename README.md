@@ -1,4 +1,4 @@
-This project was a practice and proof of concept to act as an enterprise level employee and asset management system with HR integrations and software deployment capabilities.
+This is my first project written in C#, so this project was a practice and proof of concept to act as an enterprise level employee and asset management system with HR integrations and software deployment capabilities.
 
 This would allow tracking of all employees, including employment actions such as onboard/offboarding, asset tracking, and software license tracking features. 
 
