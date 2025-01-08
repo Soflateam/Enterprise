@@ -70,12 +70,11 @@ namespace Enterprise
 
         private void SoftwareViewButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ContentFrame.Source = new Uri("SoftwareView.xaml", UriKind.Relative);
         }
 
         private void EmployeesViewButton_Click(object sender, RoutedEventArgs e)
         {
-
             ContentFrame.Source = new Uri("EmployeeView.xaml", UriKind.Relative);
         }
 
