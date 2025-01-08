@@ -30,22 +30,22 @@ namespace Enterprise
         // EmployeeData Class for Employee related functionality - Needs updating when properties are changed
         public class EmployeeData
         {
-            public string EmployeeFirstName { get; set; }
-            public string EmployeeMiddleName { get; set; }
-            public string EmployeeLastName { get; set; }
-            public string EmployeePreferredName { get; set; }
-            public string EmployeeTitle { get; set; }
-            public string EmployeeDepartment { get; set; }
-            public string EmployeeManager { get; set; }
-            public string EmployeePhone { get; set; }
-            public string EmployeeEmail { get; set; }
-            public string EmployeeType { get; set; }
-            public string EmployeeImagePath { get; set; }
-            public string EmployeeLocation { get; set; }
-            public string EmployeeAddress { get; set; }
-            public string EmployeeCity { get; set; }
-            public string EmployeeState { get; set; }
-            public string EmployeeZip { get; set; }
+            public string? EmployeeFirstName { get; set; }
+            public string? EmployeeMiddleName { get; set; }
+            public string? EmployeeLastName { get; set; }
+            public string? EmployeePreferredName { get; set; }
+            public string? EmployeeTitle { get; set; }
+            public string? EmployeeDepartment { get; set; }
+            public string? EmployeeManager { get; set; }
+            public string? EmployeePhone { get; set; }
+            public string? EmployeeEmail { get; set; }
+            public string? EmployeeType { get; set; }
+            public string? EmployeeImagePath { get; set; }
+            public string? EmployeeLocation { get; set; }
+            public string? EmployeeAddress { get; set; }
+            public string? EmployeeCity { get; set; }
+            public string? EmployeeState { get; set; }
+            public string? EmployeeZip { get; set; }
         }
 
         // Save and Load Data to and from File Logic - CSV Based - Employees
