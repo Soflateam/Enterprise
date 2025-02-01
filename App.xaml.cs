@@ -46,6 +46,8 @@ namespace Enterprise
             public string? EmployeeCity { get; set; }
             public string? EmployeeState { get; set; }
             public string? EmployeeZip { get; set; }
+            public string? EmployeeDeskLocation { get; set; }
+            public string? EmployeeADAccountName { get; set; }
         }
 
         // Save and Load Data to and from File Logic - CSV Based - Employees

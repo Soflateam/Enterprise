@@ -61,6 +61,8 @@ namespace Enterprise
                         existingEmployee.EmployeeCity = EmployeeCityTextBox.Text;
                         existingEmployee.EmployeeState = EmployeeStateTextBox.Text;
                         existingEmployee.EmployeeZip = EmployeeZipTextBox.Text;
+                        existingEmployee.EmployeeDeskLocation = EmployeeDeskLocationTextBox.Text;
+                        existingEmployee.EmployeeADAccountName = EmployeeADAccountTextBox.Text;
 
                         if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
                         {
@@ -86,6 +88,8 @@ namespace Enterprise
                         employee.EmployeeCity = EmployeeCityTextBox.Text;
                         employee.EmployeeState = EmployeeStateTextBox.Text;
                         employee.EmployeeZip = EmployeeZipTextBox.Text;
+                        employee.EmployeeDeskLocation = EmployeeDeskLocationTextBox.Text;
+                        employee.EmployeeADAccountName = EmployeeADAccountTextBox.Text;
 
                         if (!string.IsNullOrEmpty(employee.EmployeeImagePath))
                         {
@@ -137,6 +141,8 @@ namespace Enterprise
             EmployeeCityTextBox.Clear();
             EmployeeStateTextBox.Clear();
             EmployeeZipTextBox.Clear();
+            EmployeeDeskLocationTextBox.Clear();
+            EmployeeADAccountTextBox.Clear();
 
             // Reset the image to the placeholder or the original image
             EmployeeImage.Source = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg"));

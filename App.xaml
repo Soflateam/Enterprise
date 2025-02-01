@@ -188,7 +188,7 @@
 
         <Style x:Key="EditInformationBox" TargetType="TextBox" BasedOn="{StaticResource SearchTextBox}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="125"/>
             <Setter Property="Margin" Value="0,0,0,22"/>
             <Setter Property="Padding" Value="5,3,3,0"/>
             <Setter Property="Foreground" Value="#26331d"/>

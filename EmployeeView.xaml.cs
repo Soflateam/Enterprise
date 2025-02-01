@@ -91,7 +91,9 @@ namespace Enterprise
                        employee.EmployeeCity.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeState.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                        employee.EmployeeZip.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                       employee.EmployeeEmail.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+                       employee.EmployeeEmail.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeADAccountName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       employee.EmployeeDeskLocation.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
             }
             return false;
         }
