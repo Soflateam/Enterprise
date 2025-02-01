@@ -120,6 +120,11 @@
                         <TextBlock Text="Zip" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox x:Name="EmployeeZipTextBox"  Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeeZip, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Desk Location:" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeDeskLocationTextBox" Style="{StaticResource EditInformationBox}"
+                                Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
+
                     </StackPanel>
 
                     <!--Fourth Column-->
@@ -133,26 +138,6 @@
                                  Text="{Binding EmployeePhone, UpdateSourceTrigger=PropertyChanged}"/>
 
                     </StackPanel>
-
-
-                    <!--Fifth Column-->
-                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
-                        <TextBlock Text="Desk Location:" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="EmployeeDeskLocationTextBox" Style="{StaticResource EditInformationBox}"
-                                 Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
-
-                        <TextBlock Text="Desk Map:" Style="{StaticResource EditInformationTextBlock}"/>
-                        <Button Style="{StaticResource UploadPictureButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,20">
-                            <Border Height="150" Width="150" ClipToBounds="True">
-                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image x:Name="EmployeeDeskMapImg" Source="pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg" 
-                                           Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Grid>
-                            </Border>
-                        </Button>
-
-                    </StackPanel>
-
                 </DockPanel>
             </Border>
 
