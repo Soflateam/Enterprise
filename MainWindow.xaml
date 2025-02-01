@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Enterprise"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="MainWindow" Height="625" Width="1000" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Title="MainWindow" Height="750" Width="1200" WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent">
 
     <Window.Resources>
@@ -14,7 +14,7 @@
 
 
     <!--Left Side Menu Grid-->
-    <Border Background="#eff2f7" CornerRadius="10" MouseDown="Border_MouseDown">
+    <Border Background="#eff2f7" CornerRadius="8" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -28,10 +28,10 @@
             </Grid.RowDefinitions>
 
             <!--Left Side Color and Menus-->
-            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,75,0,8"
+            <Border Grid.Row="1" Grid.Column="0" Background="#26331d" CornerRadius="0,35,0,5"
                     HorizontalAlignment="Left">
                 <DockPanel>
-                    <Border Width="100" Height="100" Padding="3" Background="White" CornerRadius="50"
+                    <Border Width="125" Height="125" Padding="2" Background="White" CornerRadius="60"
                             DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20,40,0,0">
                         <Ellipse>
                             <Ellipse.Fill>
@@ -92,11 +92,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!--Top Right Buttons-->
@@ -111,10 +106,10 @@
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="5">
-
-                <Frame x:Name="ContentFrame" Source="Dashboard.xaml" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Frame x:Name="ContentFrame" Source="Dashboard.xaml" NavigationUIVisibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
             </Grid>
+            
         </Grid>
     </Border>
 </Window>

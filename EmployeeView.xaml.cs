@@ -249,8 +249,7 @@ namespace Enterprise
                             }
                         }
 
-                // Remove the employee from the Employees collection
-                ((App)Application.Current).Employees.Remove(selectedEmployee);
+                        ((App)Application.Current).Employees.Remove(selectedEmployee);
 
                         // Save the updated data to the file
                         ((App)Application.Current).SaveDataToFileEmployees();

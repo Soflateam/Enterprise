@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
       xmlns:local="clr-namespace:Enterprise"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      Height="550" Width="800" 
+      Height="650" Width="1000" 
       Title="EmployeeView">
 
     <Page.Resources>
@@ -52,36 +52,35 @@
                 <TextBlock Text="Filter by:" Grid.Row="4" FontSize="12" FontWeight="SemiBold" Foreground="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,100,180,0"/>
 
                 <!--Filter Box-->
-                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-335,25,0">
+                <Grid Width="150" HorizontalAlignment="Right" Grid.Row="4" Margin="0,-435,25,0">
                     <TextBox x:Name="FilterText" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SearchFilterBox}"/>
                 </Grid>
 
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="5">
+            <Grid Grid.Column="1" Grid.Row="1">
                 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="249*"/>
-                    <ColumnDefinition Width="151*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--Employees DataGrid-->
                 <DataGrid ItemsSource="{Binding FilteredEmployees}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
-                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="5,135,5,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
+                          RowStyle="{DynamicResource DataGridRowStyle1}" Margin="0,75,0,15" x:Name="EmployeesDataGrid" Grid.ColumnSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn IsReadOnly="True" Width="100">
+                        <DataGridTemplateColumn IsReadOnly="True" Width="120">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.RowDefinitions>
-                                            <RowDefinition/>
+                                            <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
                                         
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Border Width="75" Height="75" Background="Transparent" CornerRadius="8" HorizontalAlignment="Center" Margin="0,0,0,0">
+                                        <Border Width="100" Height="100" Background="Transparent" CornerRadius="8" HorizontalAlignment="Center" Margin="0,0,0,0">
                                             <Image x:Name="EmployeeImageListView" Source="{Binding EmployeeImagePath}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                         </Border>
                                     </Grid>
@@ -89,22 +88,22 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="90" Binding="{Binding EmployeeFirstName}"/>
-                        <DataGridTextColumn Header="Last Name" IsReadOnly="True" Width="100" Binding="{Binding EmployeeLastName}"/>
-                        <DataGridTextColumn Header="Department" IsReadOnly="True" Width="*" Binding="{Binding EmployeeDepartment}"/>
-                        <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
-                        <DataGridTextColumn Header="Phone" IsReadOnly="True" Width="*" Binding="{Binding EmployeePhone}"/>
-                        <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
+                        <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="100" Binding="{Binding EmployeeFirstName}"/>
+                        <DataGridTextColumn Header="  Last Name" IsReadOnly="True" Width="120" Binding="{Binding EmployeeLastName}"/>
+                        <DataGridTextColumn Header="  Department" IsReadOnly="True" Width="110" Binding="{Binding EmployeeDepartment}"/>
+                        <DataGridTextColumn Header="   Title" IsReadOnly="True" Width="*" Binding="{Binding EmployeeTitle}"/>
+                        <DataGridTextColumn Header="   Phone" IsReadOnly="True" Width="120" Binding="{Binding EmployeePhone}"/>
+                        <DataGridTextColumn Header="   Email" IsReadOnly="True" Width="*" Binding="{Binding EmployeeEmail}"/>
 
-                        <DataGridTemplateColumn IsReadOnly="True" Width="80">
+                        <DataGridTemplateColumn IsReadOnly="True" Width="95">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Button Style="{StaticResource GridEditButton}" Click="EditButton_Click">
-                                            <Icon:PackIconMaterial Kind="AccountEdit" Margin="0,0,3,0"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Icon:PackIconMaterial Kind="AccountEdit" Margin="0,0,3,0"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="22"/>
                                         </Button>
                                         <Button Style="{StaticResource GridRemoveButton}" Click="RemoveButton_Click">
-                                            <Icon:PackIconMaterial Kind="TrashCan" Margin="0,0,4,0"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Icon:PackIconMaterial Kind="TrashCan" Margin="0,0,3,0"   HorizontalAlignment="Center" VerticalAlignment="Center" Height="22" Width="22"/>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>

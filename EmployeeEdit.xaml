@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
       xmlns:local="clr-namespace:Enterprise"
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      Height="550" Width="800" 
+      Height="650" Width="1000" 
       Title="EmployeeEdit">
 
     <Page.Resources>
@@ -71,14 +71,16 @@
                         <TextBox x:Name="EmployeeLastNameTextBox" Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeeLastName, UpdateSourceTrigger=PropertyChanged}"/>
 
+                        <TextBlock Text="Preferred Name" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeePreferredNameTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeePreferredName, UpdateSourceTrigger=PropertyChanged}"/>
+
+
                     </StackPanel>
 
                     <!--Second Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
 
-                        <TextBlock Text="Preferred Name" Style="{StaticResource EditInformationTextBlock}"/>
-                        <TextBox x:Name="EmployeePreferredNameTextBox" Style="{StaticResource EditInformationBox}"
-                                 Text="{Binding EmployeePreferredName, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock Text="Title" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox x:Name="EmployeeTitleTextBox" Style="{StaticResource EditInformationBox}"
@@ -99,7 +101,7 @@
 
                     <!--Third Column-->
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
-                        <TextBlock Text="Location" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBlock Text="Office Location" Style="{StaticResource EditInformationTextBlock}"/>
                         <TextBox x:Name="EmployeeLocationTextBox" Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeeLocation, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -130,22 +132,43 @@
                         <TextBox x:Name="EmployeePhoneTextBox" Style="{StaticResource EditInformationBox}"
                                  Text="{Binding EmployeePhone, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <!--Save Button-->
-                        <Button x:Name="SaveButton" Margin="0,5,20,0" Click="SaveButton_Click" Style="{StaticResource AddButton}">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="11" Height="11" Margin="0,1,0,0"/>
-                                <TextBlock Text="Save" Margin="6,0,0,0"/>
-                            </StackPanel>
-                        </Button>
                     </StackPanel>
 
-                    <!--Discard and Close Button-->
-                    <Button x:Name="DiscardButton" Style="{StaticResource InnerCloseButton}" Click="DiscardButton_Click"
-                            Margin="0,10,10,0"  VerticalAlignment="Top" HorizontalAlignment="Right">
-                        <Icon:PackIconMaterial Kind="CloseOutline" Width="12" Height="12"/>
-                    </Button>
+
+                    <!--Fifth Column-->
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,50,0,0">
+                        <TextBlock Text="Desk Location:" Style="{StaticResource EditInformationTextBlock}"/>
+                        <TextBox x:Name="EmployeeDeskLocationTextBox" Style="{StaticResource EditInformationBox}"
+                                 Text="{Binding EmployeeEmail, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Text="Desk Map:" Style="{StaticResource EditInformationTextBlock}"/>
+                        <Button Style="{StaticResource UploadPictureButton}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,20">
+                            <Border Height="150" Width="150" ClipToBounds="True">
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image x:Name="EmployeeDeskMapImg" Source="pack://application:,,,/Assets/Images/EmployeePlaceholder.jpg" 
+                                           Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </Button>
+
+                    </StackPanel>
+
                 </DockPanel>
             </Border>
+
+            <!--Discard and Close Button-->
+            <Button x:Name="DiscardButton" Style="{StaticResource InnerCloseButton}" Click="DiscardButton_Click" Grid.Column="1" Grid.Row="1" 
+                            Margin="0,100,25,0"  VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Icon:PackIconMaterial Kind="CloseOutline" Width="12" Height="12"/>
+            </Button>
+
+            <!--Save Button-->
+            <Button x:Name="SaveButton" Margin="0,0,40,40" Click="SaveButton_Click" Style="{StaticResource AddButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="ContentSave" VerticalAlignment="Center" Width="12" Height="12" Margin="0,1,0,0"/>
+                    <TextBlock Text="Save" Margin="6,0,0,0"/>
+                </StackPanel>
+            </Button>
 
         </Grid>
     </Border>
